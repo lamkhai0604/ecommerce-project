@@ -1,0 +1,46 @@
+.recommend {
+    background-color: #f7f7f7;
+    width: 100%;
+}
+
+.recommend-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.recommend-content {
+    width: 20%;
+    position: relative;
+    top: 10rem;
+}
+
+.recommend-content span {
+    color: #929292;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.recommend-content_border:before {
+    width: 15%;
+    position: absolute;
+    content: '';
+    border-top: 2.5px solid #292929;
+    padding: 0 0 1rem 0;
+}
+
+.recommend-content_border p {
+    display: inline-block;
+    padding: 1.5rem 0 0 0;
+    font-size: 27px;
+    text-transform: capitalize;
+    vertical-align: top;
+    margin: 0;
+    position: relative;
+    color: #292929;
+    font-weight: 600;
+    line-height: 1;
+    font-family: 'Poppins';
+}
