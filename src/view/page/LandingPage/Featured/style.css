@@ -1,0 +1,28 @@
+.featured-product {
+    padding: 4rem 15rem;
+}
+
+.featured-product_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.featured-product_cardGroup {
+    display: block;
+    width: 100%;
+}
+
+.cardGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cardGroup-banner {
+    display: flex;
+    flex-direction: row;
+}

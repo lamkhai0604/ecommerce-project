@@ -4,10 +4,12 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import { history } from 'utils';
+import { productsReducer } from 'controllers/feature/product/productSlice';
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
   // auth: authReducer,
+  products: productsReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -21,7 +23,9 @@ export const store = configureStore({
 sagaMiddleware.run(rootSaga)
 
 export type AppDispatch = typeof store.dispatch;
+
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

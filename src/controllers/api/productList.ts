@@ -1,8 +1,8 @@
 import axiosClient from './axiosClient'
-import { ListParams, ListResponse, IProductList, IProductItem } from 'models'
+import { ListParams, ListResponse, IProductState, IProductItem } from 'models'
 
-const studentApi = {
-    getAll(params: ListParams): Promise<ListResponse<IProductList[]>> {
+const productsApi = {
+    getProductsList(params: ListParams): Promise<ListResponse<IProductState>> {
         const url = '/products'
         return axiosClient.get(url, { params })
     },
@@ -24,4 +24,4 @@ const studentApi = {
     },
 }
 
-export default studentApi;
+export default productsApi;

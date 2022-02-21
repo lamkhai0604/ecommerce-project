@@ -67,7 +67,12 @@ const Footer = () => {
         <div className="footer-copyright_container">
           <span>
             &copy; Created by&nbsp;
-            <a href="https://www.linkedin.com/in/kh%E1%BA%A3i-l%C3%A2m-04ab8712a/">Lâm Khải</a>
+            <a
+              style={{ textDecoration: 'none' }}
+              href="https://www.linkedin.com/in/kh%E1%BA%A3i-l%C3%A2m-04ab8712a/"
+            >
+              Lâm Khải
+            </a>
             &nbsp;
             <MdFaceRetouchingNatural />
           </span>
