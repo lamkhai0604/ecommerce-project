@@ -11,9 +11,21 @@ export interface IProductItem {
   updatedAt: number;
 }
 
-export interface IProductState {
+export interface IProductList {
   items: IProductItem[];
   isLoading: boolean;
   isLoaded: boolean;
   errorMsg: string;
+}
+
+export interface IRecommendProductList {
+  items: IProductItem[];
+  isLoading: boolean;
+  isLoaded: boolean;
+  errorMsg: string;
+}
+
+export interface IProductState {
+  productList: IProductList;
+  recommendProductList: IRecommendProductList;
 }

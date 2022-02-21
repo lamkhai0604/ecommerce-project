@@ -4,10 +4,19 @@ import { IProductItem, IProductState } from 'models';
 
 //State
 const initialState: IProductState = {
-    isLoading: false,
-    isLoaded: false,
-    items: [],
-    errorMsg: ''
+    productList: {
+        isLoading: false,
+        isLoaded: false,
+        items: [],
+        errorMsg: ''
+    },
+    recommendProductList: {
+        isLoading: false,
+        isLoaded: false,
+        items: [],
+        errorMsg: ''
+
+    },
 }
 
 //Slice
@@ -16,36 +25,37 @@ const productsSlice = createSlice({
     initialState: initialState,
     reducers: {
         fetchProductsList(state, action: PayloadAction<number>) {
-            state.isLoading = true;
-            state.isLoaded = false;
-            state.items = [];
+            state.productList.isLoading = true;
+            state.productList.isLoaded = false;
+            state.productList.items = [];
         },
         fetchProductsListSuccess(state, action: PayloadAction<IProductItem[]>) {
-            state.isLoading = false;
-            state.isLoaded = true;
-            state.items = action.payload;
+            state.productList.isLoading = false;
+            state.productList.isLoaded = true;
+            state.productList.items = action.payload;
         },
         fetchProductsListFailure(state) {
-            state.isLoading = true;
-            state.isLoaded = false;
-            state.items = [];
-            state.errorMsg = "Data not found, please try again.";
+            state.productList.isLoading = true;
+            state.productList.isLoaded = false;
+            state.productList.items = [];
+            state.productList.errorMsg = "Data not found, please try again.";
         },
-        fetchRecommendedProductsList(state, action: PayloadAction<number>) {
-            state.isLoading = true;
-            state.isLoaded = false;
-            state.items = [];
+
+        fetchRecommendProductsList(state, action: PayloadAction<number>) {
+            state.recommendProductList.isLoading = true;
+            state.recommendProductList.isLoaded = false;
+            state.recommendProductList.items = [];
         },
-        fetchRecommendedProductsListSuccess(state, action: PayloadAction<IProductItem[]>) {
-            state.isLoading = false;
-            state.isLoaded = true;
-            state.items = action.payload;
+        fetchRecommendProductsListSuccess(state, action: PayloadAction<IProductItem[]>) {
+            state.recommendProductList.isLoading = false;
+            state.recommendProductList.isLoaded = true;
+            state.recommendProductList.items = action.payload;
         },
-        fetchRecommendedProductsListFailure(state) {
-            state.isLoading = true;
-            state.isLoaded = false;
-            state.items = [];
-            state.errorMsg = "Data not found, please try again.";
+        fetchRecommendProductsListFailure(state) {
+            state.recommendProductList.isLoading = true;
+            state.recommendProductList.isLoaded = false;
+            state.recommendProductList.items = [];
+            state.recommendProductList.errorMsg = "Data not found, please try again.";
         },
     }
 })
@@ -54,11 +64,11 @@ const productsSlice = createSlice({
 export const productActions = productsSlice.actions
 
 //Selectors
-export const getProductsList = (state: RootState) => state.products.items;
-export const getProductsListLoading = (state: RootState) => state.products.isLoading;
+export const getProductsList = (state: RootState) => state.products.productList.items;
+export const getProductsListLoading = (state: RootState) => state.products.productList.isLoading;
 
-export const getReccomendProductsList = (state: RootState) => state.products.items;
-export const getReccomendProductsListLoading = (state: RootState) => state.products.isLoading;
+export const getRecommendProductsList = (state: RootState) => state.products.recommendProductList.items;
+export const getRecommendProductsListLoading = (state: RootState) => state.products.recommendProductList.isLoading;
 
 //Reducer
 export const productsReducer = productsSlice.reducer

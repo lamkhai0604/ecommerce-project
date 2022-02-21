@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Badge from './Badge';
 import StarRating from './StarRating';
+import no_image from 'assets/images/no_img.png';
 // import Popup from './Popup';
 import './style.css';
 
@@ -8,6 +9,9 @@ interface IProductCardProps {
   shadow?: boolean;
   imgUrl?: string;
   name?: string;
+  clsName?: string;
+  discount?: number;
+  newArrival?: boolean;
   grey?: boolean;
   bottom?: boolean;
   price?: number;
@@ -17,14 +21,23 @@ interface IProductCardProps {
 }
 
 const ProductCard = (props: IProductCardProps) => {
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (props.imgUrl) setImgUrl(props.imgUrl);
+      else setImgUrl(no_image);
+    }, 10000);
+  }, [props.imgUrl]);
+
   return (
-    <div className={`cardpage ${props.shadow && 'box-shadow'}`}>
+    <div className={`cardpage ${props.clsName} ${props.shadow && 'box-shadow'}`}>
       <div className="cardpage-body">
         <div className="cardpage-body_badge">
-          <Badge />
-          <Badge />
+          {props.discount && <Badge />}
+          {props.newArrival && <Badge />}
         </div>
-        <img src={props.imgUrl} alt={props.name} width="270" height="360" />
+        <img src={imgUrl} alt={props.name} width="270" height="360" />
         {/* <Popup clsName="popup" /> */}
       </div>
       <div className={`cardpage-footer ${props.bottom && 'mb-4'} ${props.grey && 'bgc-grey'}`}>

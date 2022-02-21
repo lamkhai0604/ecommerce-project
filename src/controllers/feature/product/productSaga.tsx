@@ -22,13 +22,13 @@ function* fetchRecommendProductsListApi(action: PayloadAction<number>) {
       _page: 1,
       _limit: action.payload,
     });
-    yield put(productActions.fetchProductsListSuccess(res.data));
+    yield put(productActions.fetchRecommendProductsListSuccess(res.data));
   } catch (err) {
-    yield put(productActions.fetchProductsListFailure());
+    yield put(productActions.fetchRecommendProductsListFailure());
   }
 }
 
 export default function* productSaga() {
   yield takeLatest(productActions.fetchProductsList.type, fetchProductsListApi);
-  yield takeLatest(productActions.fetchRecommendedProductsList.type, fetchRecommendProductsListApi);
+  yield takeLatest(productActions.fetchRecommendProductsList.type, fetchRecommendProductsListApi);
 }

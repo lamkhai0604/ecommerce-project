@@ -4,7 +4,7 @@ import './style.css';
 const NotFound = () => {
   return (
     <div className="notfound">
-      <h3 className="my-5">PAGE NOT FOUND</h3>
+      <h3 className="my-5">System is down for maintenance. Please wait</h3>
       <img src={no_data} alt="no data found" />
     </div>
   );

@@ -13,11 +13,13 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="" element={<HomePage />} />
-
-          {/* No other routes match */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="specials" element={<NotFound />} />
+          <Route path="information" element={<NotFound />} />
         </Route>
+
+        {/* No other routes match */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </Provider>,

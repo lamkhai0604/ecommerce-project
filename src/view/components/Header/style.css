@@ -58,3 +58,7 @@
 .header-setting span {
     font-size: 1.3rem;
 }
+
+.header-setting_icons {
+    cursor: pointer;
+}

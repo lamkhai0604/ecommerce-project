@@ -45,4 +45,11 @@
     font-family: 'Poppins';
 }
 
-.recommend-product {}
+.recommend-product {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}

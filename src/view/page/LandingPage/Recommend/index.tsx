@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import {
-  getReccomendProductsList,
-  // getReccomendProductsListLoading,
+  getRecommendProductsList,
+  // getRecommendProductsListLoading,
   productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
@@ -10,12 +10,12 @@ import './style.css';
 
 const Recommend = () => {
   const dispatch = useAppDispatch();
-  const ReccommendProductsList = useAppSelector(getReccomendProductsList);
+  const RecommendProductsList = useAppSelector(getRecommendProductsList);
   // const isLoadingProductList = useAppSelector(getReccomendProductsListLoading);
   // console.log('Product', ProductsList);
 
   useEffect(() => {
-    dispatch(productActions.fetchRecommendedProductsList(50));
+    dispatch(productActions.fetchRecommendProductsList(20));
   }, [dispatch]);
 
   return (
@@ -31,19 +31,20 @@ const Recommend = () => {
             officia deserunt mollit anim id est laborum.
           </span>
         </div>
-        {ReccommendProductsList.map((item) => {
-          return (
-            <div key={item.id} className="recommend-product mx-5">
+        <div className="recommend-product">
+          {RecommendProductsList.map((item) => {
+            return (
               <ProductCard
                 grey
+                clsName="mx-5"
                 name={item.name}
                 imgUrl={item.imgUrl}
                 price={item.price}
                 starRating={item.starRating}
               />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
   width: 210px;
   display: block;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .box-shadow {
