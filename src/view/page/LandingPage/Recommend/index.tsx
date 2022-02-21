@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import {
   getReccomendProductsList,
-  getReccomendProductsListLoading,
+  // getReccomendProductsListLoading,
   productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
@@ -11,7 +11,7 @@ import './style.css';
 const Recommend = () => {
   const dispatch = useAppDispatch();
   const ReccommendProductsList = useAppSelector(getReccomendProductsList);
-  const isLoadingProductList = useAppSelector(getReccomendProductsListLoading);
+  // const isLoadingProductList = useAppSelector(getReccomendProductsListLoading);
   // console.log('Product', ProductsList);
 
   useEffect(() => {

@@ -1,5 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { ReactNode } from 'react';
 import Badge from './Badge';
 import StarRating from './StarRating';
 // import Popup from './Popup';

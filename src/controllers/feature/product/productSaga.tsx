@@ -18,7 +18,7 @@ function* fetchProductsListApi(action: PayloadAction<number>) {
 
 function* fetchRecommendProductsListApi(action: PayloadAction<number>) {
   try {
-    const res: ListResponse<IProductItem> = yield call(productsApi.getProductsList, {
+    const res: ListResponse<IProductItem> = yield call(productsApi.getRecommendProductsList, {
       _page: 1,
       _limit: action.payload,
     });
@@ -30,4 +30,5 @@ function* fetchRecommendProductsListApi(action: PayloadAction<number>) {
 
 export default function* productSaga() {
   yield takeLatest(productActions.fetchProductsList.type, fetchProductsListApi);
+  yield takeLatest(productActions.fetchRecommendedProductsList.type, fetchRecommendProductsListApi);
 }

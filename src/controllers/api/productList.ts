@@ -6,6 +6,10 @@ const productsApi = {
         const url = '/products'
         return axiosClient.get(url, { params })
     },
+    getRecommendProductsList(params: ListParams): Promise<ListResponse<IProductState>> {
+        const url = '/recommendProductList'
+        return axiosClient.get(url, { params })
+    },
     getById(id: string): Promise<IProductItem> {
         const url = `/products/${id}`
         return axiosClient.get(url)
