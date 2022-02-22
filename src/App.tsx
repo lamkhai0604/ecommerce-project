@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from 'view/components/Header';
-import PromotionModal from './view/components/PromotionModal/index';
+import HomePage from 'view/page/HomePage';
+import NotFound from 'view/page/NotFound';
+import { Route, Routes } from 'react-router-dom';
+import RoutesApp from 'routes';
+import ProductItem from 'view/page/LandingPage/Featured/ProductItem';
 
 const App = () => {
-  const [promotionModal, setPromotionModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    setPromotionModal(true);
-  }, []);
-
   return (
-    <div>
-      {promotionModal && <PromotionModal onClose={() => setPromotionModal(false)} />}
+    <Routes>
+      <Route path="/" element={<RoutesApp />}>
+        <Route index element={<HomePage />} />
+        <Route path="product/:id" element={<ProductItem />} />
+        <Route path="specials" element={<NotFound />} />
+        <Route path="information" element={<NotFound />} />
+      </Route>
 
-      <Header />
-      <Outlet />
-
-    </div>
+      {/* No other routes match */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

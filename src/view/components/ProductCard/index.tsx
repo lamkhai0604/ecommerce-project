@@ -4,8 +4,10 @@ import StarRating from './StarRating';
 import no_image from 'assets/images/no_img.png';
 // import Popup from './Popup';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 interface IProductCardProps {
+  id?: string;
   shadow?: boolean;
   imgUrl?: string;
   name?: string;
@@ -31,7 +33,10 @@ const ProductCard = (props: IProductCardProps) => {
   }, [props.imgUrl]);
 
   return (
-    <div className={`cardpage ${props.clsName} ${props.shadow && 'box-shadow'}`}>
+    <Link
+      to={`product/${props.id}?name=${props.name}`}
+      className={`cardpage ${props.clsName} ${props.shadow && 'box-shadow'}`}
+    >
       <div className="cardpage-body">
         <div className="cardpage-body_badge">
           {props.discount && <Badge />}
@@ -48,7 +53,7 @@ const ProductCard = (props: IProductCardProps) => {
           {props.oldPrice ? <span className="price-old">$90.00</span> : null}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

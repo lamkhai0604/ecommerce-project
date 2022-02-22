@@ -37,6 +37,7 @@ const Recommend = () => {
               <ProductCard
                 grey
                 clsName="mx-5"
+                key={item.id}
                 name={item.name}
                 imgUrl={item.imgUrl}
                 price={item.price}

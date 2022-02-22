@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Shizuru&display=swap');
 
+.navbar-scroll {
+    top: auto !important;
+    background-color: #fff;
+    opacity: 0.8;
+    z-index: 15;
+    position: fixed;
+    transition: all 5s ease-in-out;
+}
+
 .header {
     width: 100%;
     display: flex;
@@ -26,6 +35,12 @@
     text-transform: uppercase;
     font-weight: 600;
     text-decoration: none;
+}
+
+.header-menu_link:hover {
+    color: #FF0055;
+    border-bottom: 4px solid #ff0055;
+    border-radius: 5px;
 }
 
 .header-logo {
