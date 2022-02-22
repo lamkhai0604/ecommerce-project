@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import productsApi from 'controllers/api/productList';
-import { IProductItem, ListResponse } from 'models';
+import { IApiResponse, IProductItem, ListResponse } from 'models';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { productActions } from './productSlice';
 
@@ -28,7 +28,17 @@ function* fetchRecommendProductsListApi(action: PayloadAction<number>) {
   }
 }
 
+function* fetchProductByIdApi(action: PayloadAction<string>) {
+  try {
+    const res: IApiResponse<IProductItem> = yield call(productsApi.getProductById, action.payload);
+    yield put(productActions.fetchProductByIdSuccess(res as IProductItem))
+  } catch (err) {
+    yield put(productActions.fetchProductByIdFailure());
+  }
+}
+
 export default function* productSaga() {
   yield takeLatest(productActions.fetchProductsList.type, fetchProductsListApi);
   yield takeLatest(productActions.fetchRecommendProductsList.type, fetchRecommendProductsListApi);
+  yield takeLatest(productActions.fetchProductById.type, fetchProductByIdApi);
 }

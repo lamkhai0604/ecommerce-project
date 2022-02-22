@@ -1,16 +1,17 @@
-.input {
+.input-component {
   display: flex;
   align-items: center;
 }
 
-.input label {
+.input-component label {
   font-weight: bold;
+  margin-right: 15px;
 }
 
-.input input {
+.input-component input {
   width: 3rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   font: inherit;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }

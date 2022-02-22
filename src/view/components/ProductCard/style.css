@@ -3,6 +3,7 @@
   display: block;
   background-color: #fff;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .box-shadow {

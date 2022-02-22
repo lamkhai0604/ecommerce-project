@@ -1,14 +1,16 @@
 export interface IProductItem {
-  categoryId: string;
-  id: string;
-  name: string;
-  price: number;
-  starRating: number;
-  description: string;
-  imgUrl: string;
-  color: string;
-  createdAt: number;
-  updatedAt: number;
+  categoryId?: string;
+  id?: string;
+  name?: string;
+  price?: number;
+  code?: number;
+  starRating?: number;
+  description?: string;
+  imgUrl?: string;
+  color?: string;
+  brand?: string;
+  createdAt?: number;
+  updatedAt?: number;
 }
 
 export interface IProductList {
@@ -25,7 +27,15 @@ export interface IRecommendProductList {
   errorMsg: string;
 }
 
+export interface IItem {
+  item: IProductItem;
+  isLoading: boolean;
+  isLoaded: boolean;
+  errorMsg: string;
+}
+
 export interface IProductState {
   productList: IProductList;
+  productItem: IItem;
   recommendProductList: IRecommendProductList;
 }

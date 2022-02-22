@@ -1,5 +1,5 @@
 import axiosClient from './axiosClient'
-import { ListParams, ListResponse, IProductState, IProductItem } from 'models'
+import { ListParams, ListResponse, IProductState, IProductItem, IApiResponse } from 'models'
 
 const productsApi = {
     getProductsList(params: ListParams): Promise<ListResponse<IProductState>> {
@@ -10,7 +10,7 @@ const productsApi = {
         const url = '/recommendProductList'
         return axiosClient.get(url, { params })
     },
-    getById(id: string): Promise<IProductItem> {
+    getProductById(id: string): Promise<IApiResponse<IProductItem>> {
         const url = `/products/${id}`
         return axiosClient.get(url)
     },

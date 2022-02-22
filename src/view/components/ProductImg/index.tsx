@@ -1,12 +1,14 @@
-import './style.css'
+import './style.css';
 
 interface IProductImgProps {
-    imgUrl?: string;
-    name?: string;
+  imgUrl?: string;
+  name?: string;
 }
 
 const ProductImg = (props: IProductImgProps) => {
-    return <div className="productImg"><img src={props.imgUrl} alt={props.name} /></div>
-}
+  return (
+    <img src={props.imgUrl} className="productImg" width="556px" height="740px" alt={props.name} />
+  );
+};
 
 export default ProductImg;

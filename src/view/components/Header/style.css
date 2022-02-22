@@ -3,10 +3,10 @@
 .navbar-scroll {
     top: auto !important;
     background-color: #fff;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 15;
     position: fixed;
-    transition: all 5s ease-in-out;
+    transition: all 3s ease-in-out;
 }
 
 .header {

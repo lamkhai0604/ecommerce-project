@@ -9,6 +9,10 @@ export interface ListResponse<T> {
   paginations: PaginationParams;
 }
 
+export interface IApiResponse<T> {
+  success: boolean;
+  data: T | null;
+}
 export interface ListParams {
   _limit?: number;
   _page?: number;

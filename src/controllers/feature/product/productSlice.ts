@@ -17,6 +17,12 @@ const initialState: IProductState = {
         errorMsg: ''
 
     },
+    productItem: {
+        isLoading: false,
+        isLoaded: false,
+        item: {},
+        errorMsg: ''
+    }
 }
 
 //Slice
@@ -57,6 +63,23 @@ const productsSlice = createSlice({
             state.recommendProductList.items = [];
             state.recommendProductList.errorMsg = "Data not found, please try again.";
         },
+
+        fetchProductById(state, action: PayloadAction<string>) {
+            state.productItem.isLoading = true;
+            state.productItem.isLoaded = false;
+            state.productItem.item = {};
+        },
+        fetchProductByIdSuccess(state, action: PayloadAction<IProductItem>) {
+            state.productItem.isLoading = false;
+            state.productItem.isLoaded = true;
+            state.productItem.item = action.payload;
+        },
+        fetchProductByIdFailure(state) {
+            state.productItem.isLoading = true;
+            state.productItem.isLoaded = false;
+            state.productItem.item = {};
+            state.productItem.errorMsg = "Product not found"
+        }
     }
 })
 
@@ -70,5 +93,7 @@ export const getProductsListLoading = (state: RootState) => state.products.produ
 export const getRecommendProductsList = (state: RootState) => state.products.recommendProductList.items;
 export const getRecommendProductsListLoading = (state: RootState) => state.products.recommendProductList.isLoading;
 
+export const getProductById = (state: RootState) => state.products.productItem.item;
+export const getProductByIdLoading = (state: RootState) => state.products.productItem.isLoading
 //Reducer
 export const productsReducer = productsSlice.reducer
