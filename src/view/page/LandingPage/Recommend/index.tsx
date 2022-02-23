@@ -5,7 +5,7 @@ import {
   productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
-import ProductCard from 'view/components/ProductCard';
+import SwiperCard from 'view/components/SwiperCard';
 import './style.css';
 
 const Recommend = () => {
@@ -22,29 +22,16 @@ const Recommend = () => {
     <div className="recommend">
       <div className="recommend-container py-4">
         <div className="recommend-content">
-          <div className="recommend-content_border">
-            <p>Recommended For You</p>
-          </div>
-          <span>
+          <span className="recommend-content_border" />
+          <h4>Recommended For You</h4>
+          <p>
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
             nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum.
-          </span>
+          </p>
         </div>
         <div className="recommend-product">
-          {RecommendProductsList.map((item) => {
-            return (
-              <ProductCard
-                grey
-                clsName="mx-5"
-                key={item.id}
-                name={item.name}
-                imgUrl={item.imgUrl}
-                price={item.price}
-                starRating={item.starRating}
-              />
-            );
-          })}
+          <SwiperCard data={RecommendProductsList} slidesPerView={5} spaceBetween={30} />
         </div>
       </div>
     </div>

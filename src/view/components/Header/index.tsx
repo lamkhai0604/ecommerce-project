@@ -11,7 +11,7 @@ const Header = () => {
   }, []);
 
   const onScroll = () => {
-    setHeaderStyle(() => (window.scrollY > 650 ? 'navbar-scroll' : ''));
+    setHeaderStyle(() => (window.scrollY > 400 ? 'navbar-scroll' : ''));
   };
 
   return (
@@ -31,8 +31,30 @@ const Header = () => {
         <span className="header-logo_main">Khai's</span>Shop
       </div>
       <div className="header-setting">
-        <span className="header-setting_icons">
-          <AiFillSetting />
+        <span className="header-setting_icons dropdown">
+          <AiFillSetting
+            className="dropdown-toggle"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          />
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <a className="dropdown-item" href="#">
+                Action
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="#">
+                Another action
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="#">
+                Something else here
+              </a>
+            </li>
+          </ul>
         </span>
         <span className="header-setting_icons">
           <AiOutlineSearch />

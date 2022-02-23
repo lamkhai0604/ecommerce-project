@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import productsApi from 'controllers/api/productList';
+import productsApi from 'controllers/api/productApi';
 import { IApiResponse, IProductItem, ListResponse } from 'models';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { productActions } from './productSlice';

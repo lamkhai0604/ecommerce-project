@@ -9,7 +9,7 @@ export interface IProductItem {
   imgUrl?: string;
   color?: string;
   brand?: string;
-  createdAt?: number;
+  createdAt?: string;
   updatedAt?: number;
 }
 

@@ -1,6 +1,7 @@
 .recommend {
     background-color: #f7f7f7;
     width: 100%;
+    height: 100%;
 }
 
 .recommend-container {
@@ -13,28 +14,25 @@
 .recommend-content {
     width: 20%;
     position: relative;
-    top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.recommend-content span {
+.recommend-content p {
+    width: 70%;
     color: #929292;
     font-size: 12px;
     font-weight: 400;
     line-height: 20px;
 }
 
-.recommend-content_border:before {
-    width: 15%;
-    position: absolute;
-    content: '';
-    border-top: 2.5px solid #292929;
-    padding: 0 0 1rem 0;
-}
-
-.recommend-content_border p {
+.recommend-content h4 {
+    width: 50%;
     display: inline-block;
     padding: 1.5rem 0 0 0;
-    font-size: 27px;
+    font-size: 24px;
     text-transform: capitalize;
     vertical-align: top;
     margin: 0;
@@ -42,14 +40,16 @@
     color: #292929;
     font-weight: 600;
     line-height: 1;
-    font-family: 'Poppins';
+}
+
+.recommend-content_border {
+    width: 15%;
+    position: absolute;
+    border-top: 2.5px solid #292929;
+    padding: 0 0 1rem 0;
+    top: 7rem;
 }
 
 .recommend-product {
     width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow-x: scroll;
-    overflow-y: hidden;
 }

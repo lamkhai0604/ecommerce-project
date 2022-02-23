@@ -5,10 +5,11 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import { history } from 'utils';
 import { productsReducer } from 'controllers/feature/product/productSlice';
+import { categoriesReducer } from 'controllers/feature/categories/categoriesSlice';
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
-  // auth: authReducer,
+  categories: categoriesReducer,
   products: productsReducer
 })
 
