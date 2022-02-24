@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import Footer from 'view/components/Footer';
-import Header from 'view/components/Header';
+import Footer from 'view/components/base/Footer';
+import Header from 'view/components/base/Header';
+import PromotionModal from 'view/components/layout/PromotionModal';
 import Carousel from 'view/page/LandingPage/Carousel';
-import PromotionModal from './view/components/PromotionModal/index';
 
 const RoutesApp = () => {
   let params = useParams();
@@ -13,7 +13,7 @@ const RoutesApp = () => {
 
   useEffect(() => {
     setPromotionModal(true);
-  }, [productName]);
+  }, []);
 
   return (
     <>

@@ -7,7 +7,7 @@ interface IProductImgProps {
 
 const ProductImg = (props: IProductImgProps) => {
   return (
-    <img src={props.imgUrl} className="productImg" width="556px" height="740px" alt={props.name} />
+    <img src={props.imgUrl} className="productImg" width="450px" height="600px" alt={props.name} />
   );
 };
 

@@ -1,7 +1,7 @@
 import { FaGreaterThan } from 'react-icons/fa';
 import { ImHome } from 'react-icons/im';
 import { Link } from 'react-router-dom';
-import Button from 'view/components/Button';
+import Button from 'view/components/base/Button';
 import './style.css';
 
 interface ICarouselProps {
@@ -79,10 +79,10 @@ const Carousel = (props: ICarouselProps) => {
             <Link to="/" className="carousel-bg_icons">
               <ImHome />
             </Link>
-            <span>
-              <FaGreaterThan />
-            </span>
-            <span className="carousel-bg_text">{props.name}</span>
+            
+            <FaGreaterThan className="mt-2" />
+
+            <span className="mt-2">{props.name}</span>
           </div>
         </div>
       )}

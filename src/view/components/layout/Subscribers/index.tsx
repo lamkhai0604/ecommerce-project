@@ -1,5 +1,6 @@
-import Button from '../Button';
-import Input from '../Input';
+
+import Button from 'view/components/base/Button';
+import Input from 'view/components/base/Input';
 import './style.css'
 
 const Subscribers = () => {

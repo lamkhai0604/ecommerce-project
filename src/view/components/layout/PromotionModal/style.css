@@ -18,25 +18,39 @@
     margin: auto;
 }
 
-.modal-content_btn {
+.promotion-modal_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.promotion-modal_form button {
     background-color: #292929;
-    border: none !important;
+    border-radius: 0 !important;
+    border: none;
     text-transform: uppercase;
     font-weight: 500;
 }
 
-.modal-content_input {
-    width: 20rem !important;
-    border-radius: 0 !important;
-    padding: 5px 0;
+.promotion-modal_form .input-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
 }
 
-.modal-content_input:focus {
+.promotion-modal_form .input-component input {
+    padding: 5px 1rem;
+}
+
+.promotion-modal_form .input-component input:focus {
     outline: none !important;
 }
 
-.modal-content_input::placeholder {
-    font-size: 15px;
+.promotion-modal_form .input-component input::placeholder {
+    font-size: 14px;
     color: #929292;
     line-height: 2rem;
     max-width: 30rem;

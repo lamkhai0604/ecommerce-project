@@ -1,0 +1,11 @@
+.dropdown-menu {
+  inset:  10px 0 auto auto !important;
+}
+
+.dropdown-item {
+    line-height: 3rem;
+    color: #666;
+    font-size: 15px !important;
+    font-weight: normal;
+    text-transform: capitalize;
+}

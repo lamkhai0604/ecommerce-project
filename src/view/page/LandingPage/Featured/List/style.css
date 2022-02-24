@@ -22,6 +22,10 @@
     flex-wrap: wrap;
 }
 
+.cardGroup .cardpage {
+    margin: 0 1rem 0 0;
+}
+
 .cardGroup-banner {
     display: flex;
     flex-direction: row;

@@ -8,6 +8,7 @@ interface IInputState {
   min?: string;
   max?: string;
   step?: string;
+  required?: boolean;
   defaultValue?: string;
 }
 
@@ -28,14 +29,23 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     <>
       {props.input?.type === 'checkbox' ? (
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" checked={props.checkbox?.checked} id="flexCheckDefault" />
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={props.checkbox?.checked}
+            id="flexCheckDefault"
+          />
           <label className="form-check-label" htmlFor="flexCheckDefault">
+            {props.input.required && <span>*</span>}
             {props.label}
           </label>
         </div>
       ) : (
         <div className="input-component">
-          <label htmlFor={props.input?.id}>{props.label}</label>
+          <label htmlFor={props.input?.id}>
+            {props.input?.required && <span>*</span>}
+            {props.label}
+          </label>
           <input className={props.clsName} id={props.input?.id} ref={ref} {...props.input} />
         </div>
       )}

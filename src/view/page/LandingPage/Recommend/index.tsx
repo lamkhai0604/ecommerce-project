@@ -5,7 +5,7 @@ import {
   productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
-import SwiperCard from 'view/components/SwiperCard';
+import SwiperCard from 'view/components/base/SwiperCard';
 import './style.css';
 
 const Recommend = () => {

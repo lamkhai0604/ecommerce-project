@@ -4,6 +4,7 @@ export interface IProductItem {
   name?: string;
   price?: number;
   code?: number;
+  amount?: number;
   starRating?: number;
   description?: string;
   imgUrl?: string;
@@ -38,4 +39,5 @@ export interface IProductState {
   productList: IProductList;
   productItem: IItem;
   recommendProductList: IRecommendProductList;
+  totalAmount: number;
 }

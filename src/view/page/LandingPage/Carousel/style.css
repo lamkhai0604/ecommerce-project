@@ -130,7 +130,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 13%;
+    width: 15%;
     margin: auto;
 }
 
@@ -142,10 +142,10 @@
     color: #ff0055;
 }
 
-.carousel-bg_text {
+.carousel-bg_group span {
     text-transform: capitalize;
     color: #ff0055;
     display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 16px;
 }

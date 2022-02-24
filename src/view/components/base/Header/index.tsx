@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { AiFillSetting, AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import CustomLink from '../CustomLink';
+import Dropdown from './Dropdown';
 import './style.css';
 
 const Header = () => {
@@ -31,31 +32,9 @@ const Header = () => {
         <span className="header-logo_main">Khai's</span>Shop
       </div>
       <div className="header-setting">
-        <span className="header-setting_icons dropdown">
-          <AiFillSetting
-            className="dropdown-toggle"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          />
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </li>
-          </ul>
-        </span>
+
+        <Dropdown />
+        
         <span className="header-setting_icons">
           <AiOutlineSearch />
         </span>

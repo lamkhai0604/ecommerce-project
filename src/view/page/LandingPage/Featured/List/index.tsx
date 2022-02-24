@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
 //Redux
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import {
   getProductsList,
   getProductsListLoading,
-  productActions,
+  productActions
 } from 'controllers/feature/product/productSlice';
-import ProductCard from 'view/components/ProductCard';
+import { useEffect } from 'react';
+import Empty from 'view/components/base/Empty';
+import Loading from 'view/components/base/Loading';
+import ProductCard from 'view/components/base/ProductCard';
 import './style.css';
-import Loading from 'view/components/Loading';
-import Empty from 'view/components/Empty';
 
 const List = () => {
   const dispatch = useAppDispatch();

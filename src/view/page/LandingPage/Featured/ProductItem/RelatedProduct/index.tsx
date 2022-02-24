@@ -1,5 +1,5 @@
 import { ICategory } from 'models/categories';
-import SwiperCard from 'view/components/SwiperCard';
+import SwiperCard from 'view/components/base/SwiperCard';
 import './style.css';
 
 interface IRelatedProductProps {

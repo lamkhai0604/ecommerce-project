@@ -22,7 +22,8 @@ const initialState: IProductState = {
         isLoaded: false,
         item: {},
         errorMsg: ''
-    }
+    },
+    totalAmount: 0
 }
 
 //Slice
@@ -79,6 +80,32 @@ const productsSlice = createSlice({
             state.productItem.isLoaded = false;
             state.productItem.item = {};
             state.productItem.errorMsg = "Product not found"
+        },
+
+        addItemIntoCart(state, action: PayloadAction<IProductItem>) {
+            if (action.payload.price && action.payload.amount) {
+                let updatedTotalAmount = state.totalAmount + action.payload.price * action.payload.amount;
+                console.log("updatedTotalAmount", updatedTotalAmount)
+
+                console.log("state.productList.items", state.productList.items)
+                let existingCartItemIndex = state.productList.items.findIndex(item => item.id === action.payload.id)
+                console.log("existingCartItemIndex", existingCartItemIndex)
+
+                let existingCartItem = state.productList.items[existingCartItemIndex]
+                console.log("existingCartItem", existingCartItem)
+
+                let updatedItems;
+
+                if (existingCartItem.amount) {
+                    let updatedItem = { ...existingCartItem, amount: existingCartItem.amount + action.payload.amount }
+                    updatedItems = [...state.productList.items];
+                    updatedItems[existingCartItemIndex] = updatedItem;
+                } else {
+                    updatedItems = state.productList.items.concat(action.payload)
+                }
+                state.productList.items = updatedItems;
+                state.totalAmount = updatedTotalAmount;
+            }
         }
     }
 })
