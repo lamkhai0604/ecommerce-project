@@ -1,4 +1,4 @@
-import { ICategory } from 'models/categories';
+import { ICategory } from 'models/types/categories';
 import SwiperCard from 'view/components/base/SwiperCard';
 import './style.css';
 

@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import categoriesApi from "controllers/api/categoriesApi";
 import { IApiResponse } from "models";
-import { ICategory } from "models/categories";
+import { ICategory } from "models/types/categories";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { categoriesActions } from "./categoriesSlice";
 

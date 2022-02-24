@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from 'controllers/app/store'
-import { IProductItem, IProductState } from 'models';
+import { ICartItem, IProductItem, IProductState } from 'models';
 
 //State
 const initialState: IProductState = {
@@ -23,6 +23,7 @@ const initialState: IProductState = {
         item: {},
         errorMsg: ''
     },
+    cartItems: [],
     totalAmount: 0
 }
 
@@ -82,30 +83,29 @@ const productsSlice = createSlice({
             state.productItem.errorMsg = "Product not found"
         },
 
-        addItemIntoCart(state, action: PayloadAction<IProductItem>) {
-            if (action.payload.price && action.payload.amount) {
-                let updatedTotalAmount = state.totalAmount + action.payload.price * action.payload.amount;
-                console.log("updatedTotalAmount", updatedTotalAmount)
+        addItemIntoCart(state, action: PayloadAction<ICartItem>) {
+            let updatedTotalAmount = state.totalAmount + action.payload.price * action.payload.amount;
+            let existingCartItemIndex = state.cartItems.findIndex(c => c.id === action.payload.id)
 
-                console.log("state.productList.items", state.productList.items)
-                let existingCartItemIndex = state.productList.items.findIndex(item => item.id === action.payload.id)
-                console.log("existingCartItemIndex", existingCartItemIndex)
+            let existingCartItem = state.cartItems[existingCartItemIndex]
 
-                let existingCartItem = state.productList.items[existingCartItemIndex]
-                console.log("existingCartItem", existingCartItem)
+            let updatedItems;
 
-                let updatedItems;
+            if (existingCartItem) {
 
-                if (existingCartItem.amount) {
-                    let updatedItem = { ...existingCartItem, amount: existingCartItem.amount + action.payload.amount }
-                    updatedItems = [...state.productList.items];
-                    updatedItems[existingCartItemIndex] = updatedItem;
-                } else {
-                    updatedItems = state.productList.items.concat(action.payload)
+                let updatedItem;
+                updatedItem = {
+                    ...existingCartItem,
+                    amount: existingCartItem.amount + action.payload.amount
                 }
-                state.productList.items = updatedItems;
-                state.totalAmount = updatedTotalAmount;
+                updatedItems = [...state.cartItems];
+                updatedItems[existingCartItemIndex] = updatedItem;
+            } else {
+
+                updatedItems = state.cartItems.concat(action.payload)
             }
+            state.cartItems = updatedItems;
+            state.totalAmount = updatedTotalAmount;
         }
     }
 })
@@ -122,5 +122,8 @@ export const getRecommendProductsListLoading = (state: RootState) => state.produ
 
 export const getProductById = (state: RootState) => state.products.productItem.item;
 export const getProductByIdLoading = (state: RootState) => state.products.productItem.isLoading
+
+export const getTotalAmount = (state: RootState) => state.products.totalAmount;
+export const getCartItems = (state: RootState) => state.products.cartItems;
 //Reducer
 export const productsReducer = productsSlice.reducer

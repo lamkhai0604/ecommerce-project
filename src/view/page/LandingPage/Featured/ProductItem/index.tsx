@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import { categoriesActions, getCategoryById } from 'controllers/feature/categories/categoriesSlice';
-import { getProductById, getProductsList, productActions } from 'controllers/feature/product/productSlice';
+import { getProductById, productActions } from 'controllers/feature/product/productSlice';
+import { ICartItem } from 'models';
 import { FormEvent, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
@@ -21,8 +22,6 @@ const ProductItem = (props: IProductItemProps) => {
   //Redux
   const dispatch = useAppDispatch();
   const ProductItem = useAppSelector(getProductById);
-  const ProductList = useAppSelector(getProductsList);
-  console.log("list", ProductList)
   const CategoryItem = useAppSelector(getCategoryById);
   //State
   const [isValid, setIsValid] = useState<boolean>(true);
@@ -52,8 +51,9 @@ const ProductItem = (props: IProductItemProps) => {
       name: ProductItem.name,
       amount: enteredValueNumber,
       price: ProductItem.price,
-    }
-    dispatch(productActions.addItemIntoCart(item))
+      imgUrl: ProductItem.imgUrl
+    };
+    dispatch(productActions.addItemIntoCart(item as ICartItem));
   };
 
   return (
@@ -98,7 +98,7 @@ const ProductItem = (props: IProductItemProps) => {
                 defaultValue: '1',
               }}
             />
-            
+
             <Button inverse>
               {' '}
               <AiOutlineShoppingCart />

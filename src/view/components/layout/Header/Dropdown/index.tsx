@@ -10,7 +10,7 @@ const Dropdown = () => {
     <>
       {registerModal && <RegisterModal onClose={() => setRegisterModal(false)} />}
 
-      <span className="header-setting_icons dropdown">
+      <span className="header-setting_setting dropdown">
         <AiFillSetting
           className="dropdown-toggle"
           id="dropdownMenuButton1"

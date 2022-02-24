@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading';
 
 import './styles.css';
 
 interface ButtonProps {
-  href?: string;
   size?: string;
   danger?: boolean;
   inverse?: boolean;
   to?: string;
   disabled?: boolean;
+  isLoading?: boolean;
   type?: 'button' | 'submit' | 'reset';
   clsName?: string;
   onClick?(): void;
@@ -18,29 +19,16 @@ interface ButtonProps {
 
 const Button = ({
   children,
-  href,
   size,
   danger,
   inverse,
   to,
+  isLoading,
   type,
   disabled,
   clsName,
   onClick,
 }: ButtonProps) => {
-  if (href) {
-    return (
-      <a
-        className={`button button--${size || 'default'} ${inverse && 'button--inverse'} ${
-        //   inverse === true ? "button--inverse" : null
-          danger && 'button--danger'
-        }`}
-        href={href}
-      >
-        {children}
-      </a>
-    );
-  }
   if (to) {
     return (
       <Link
@@ -62,6 +50,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
+      {isLoading && <Loading />}
       {children}
     </button>
   );

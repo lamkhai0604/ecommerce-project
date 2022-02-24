@@ -1,5 +1,5 @@
 import { IApiResponse, ListParams, ListResponse } from 'models'
-import { ICategory } from 'models/categories'
+import { ICategory } from 'models/types/categories'
 import axiosClient from './axiosClient'
 
 const categoriesApi = {

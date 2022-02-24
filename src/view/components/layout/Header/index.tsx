@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
-import CustomLink from '../CustomLink';
+import { AiOutlineSearch } from 'react-icons/ai';
+import CustomLink from 'view/components/base/CustomLink';
+import Cart from './Cart';
 import Dropdown from './Dropdown';
 import './style.css';
 
@@ -32,15 +33,13 @@ const Header = () => {
         <span className="header-logo_main">Khai's</span>Shop
       </div>
       <div className="header-setting">
-
         <Dropdown />
-        
-        <span className="header-setting_icons">
+
+        <span className="header-setting_search mx-4">
           <AiOutlineSearch />
         </span>
-        <span className="header-setting_icons">
-          <AiOutlineShoppingCart />
-        </span>
+
+        <Cart />
       </div>
     </div>
   );

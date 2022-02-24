@@ -1,4 +1,4 @@
-import { ICategoriesState, ICategory } from "models/categories";
+import { ICategoriesState, ICategory } from "models/types/categories";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from "controllers/app/store";
 

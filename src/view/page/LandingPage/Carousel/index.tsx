@@ -80,7 +80,7 @@ const Carousel = (props: ICarouselProps) => {
               <ImHome />
             </Link>
             
-            <FaGreaterThan className="mt-2" />
+            <FaGreaterThan className="mt-2 mx-3" />
 
             <span className="mt-2">{props.name}</span>
           </div>

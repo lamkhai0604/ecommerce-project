@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import Footer from 'view/components/base/Footer';
-import Header from 'view/components/base/Header';
+import Footer from 'view/components/layout/Footer';
+import Header from 'view/components/layout/Header';
 import PromotionModal from 'view/components/layout/PromotionModal';
 import Carousel from 'view/page/LandingPage/Carousel';
 

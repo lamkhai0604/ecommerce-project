@@ -1,3 +1,7 @@
+.header-setting_setting {
+  cursor: pointer;
+}
+
 .dropdown-menu {
   inset:  10px 0 auto auto !important;
 }

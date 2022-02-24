@@ -29,7 +29,7 @@ const ProductCard = (props: IProductCardProps) => {
     setTimeout(() => {
       if (props.imgUrl) setImgUrl(props.imgUrl);
       else setImgUrl(no_image);
-    }, 10000);
+    }, 5000);
   }, [props.imgUrl]);
 
   return (

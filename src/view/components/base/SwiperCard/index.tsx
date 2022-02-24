@@ -26,6 +26,7 @@ const SwiperCard = (props: ISwiperProps<any>) => {
           return (
             <SwiperSlide key={item.id}>
               <ProductCard
+                id={item.id}
                 name={item.name}
                 imgUrl={item.imgUrl}
                 price={item.price}

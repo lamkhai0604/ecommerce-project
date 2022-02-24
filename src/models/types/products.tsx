@@ -14,6 +14,14 @@ export interface IProductItem {
   updatedAt?: number;
 }
 
+export interface ICartItem {
+  id: string;
+  name: string;
+  amount: number;
+  price: number;
+  imgUrl?: string;
+}
+
 export interface IProductList {
   items: IProductItem[];
   isLoading: boolean;
@@ -39,5 +47,6 @@ export interface IProductState {
   productList: IProductList;
   productItem: IItem;
   recommendProductList: IRecommendProductList;
+  cartItems: ICartItem[];
   totalAmount: number;
 }
