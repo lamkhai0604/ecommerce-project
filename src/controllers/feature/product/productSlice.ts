@@ -106,6 +106,24 @@ const productsSlice = createSlice({
             }
             state.cartItems = updatedItems;
             state.totalAmount = updatedTotalAmount;
+        },
+        removeItemCart(state, action: PayloadAction<string>) {
+            let existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload)
+            let existingItem = state.cartItems[existingCartItemIndex];
+
+            let updatedTotalAmount = state.totalAmount - existingItem.price;
+
+            let updatedItems;
+            if (existingItem.amount === 1) {
+                updatedItems = state.cartItems.filter(item => item.id === action.payload)
+            } else {
+                let updatedItem = {...existingItem, amount: existingItem.amount - 1}
+                updatedItems = [...state.cartItems]
+                updatedItems[existingCartItemIndex] = updatedItem;
+            }
+
+            state.cartItems = updatedItems;
+            state.totalAmount = updatedTotalAmount;
         }
     }
 })

@@ -93,7 +93,7 @@ const ProductItem = (props: IProductItemProps) => {
               input={{
                 type: 'number',
                 min: '1',
-                max: '500',
+                max: '50',
                 step: '1',
                 defaultValue: '1',
               }}

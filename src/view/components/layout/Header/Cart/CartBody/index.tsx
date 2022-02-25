@@ -1,5 +1,6 @@
-import { useAppSelector } from 'controllers/app/hooks';
-import { getCartItems, getTotalAmount } from 'controllers/feature/product/productSlice';
+import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
+import { getCartItems, getTotalAmount, productActions } from 'controllers/feature/product/productSlice';
+import { ICartItem } from 'models';
 import Button from 'view/components/base/Button';
 import Divider from 'view/components/base/Divider';
 import Product from './Product';
@@ -7,8 +8,17 @@ import './style.css';
 
 const CartBody = () => {
   //Redux
+  const dispatch = useAppDispatch();
   const CartItems = useAppSelector(getCartItems);
   const totalAmount = useAppSelector(getTotalAmount);
+
+  const doAddItemToCart = (item: ICartItem) => {
+    if (item) dispatch(productActions.addItemIntoCart({ ...item, amount: 1 }));
+  };
+
+  const doRemoveItemToCart = (id: string) => {
+    if (id) dispatch(productActions.removeItemCart(id));
+  };
 
   return (
     <div
@@ -31,7 +41,16 @@ const CartBody = () => {
             <div className="cartItems-product">
               {CartItems.map((item) => {
                 return (
-                  <Product key={item.id} imgUrl={item.imgUrl} name={item.name} amount={item.amount} price={item.price} />
+                  <Product
+                    key={item.id}
+                    id={item.id}
+                    imgUrl={item.imgUrl}
+                    name={item.name}
+                    amount={item.amount}
+                    price={item.price}
+                    onAdd={doAddItemToCart.bind(null, item)}
+                    onRemove={doRemoveItemToCart.bind(null, item.id)}
+                  />
                 );
               })}
             </div>
