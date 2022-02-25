@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.cartItems-product{
+    height: calc(100% - 27%);
+    overflow-y: auto;
+}
+
 .cartItems-amount {
     display: flex;
     flex-direction: column;

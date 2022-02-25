@@ -71,9 +71,9 @@ const CartBody = () => {
             <Divider />
 
             <div className="cartItems-btnGroup mt-3">
-              <Button inverse data-bs-dismiss="offcanvas" aria-label="Close">
+              <button type="button" className="btn btn-outline-danger" data-bs-dismiss="offcanvas" aria-label="Close">
                 Close
-              </Button>
+              </button>
               <Button clsName="btn-order" inverse data-bs-dismiss="offcanvas" aria-label="Close">
                 Order
               </Button>

@@ -20,7 +20,7 @@ const Product = (props: IProductProps) => {
     amount: props.amount,
   } as ICartItem;
   return (
-    <div className="product">
+    <div className="product mb-3">
       <img src={props.imgUrl} alt="Product" width="90px" height="120px" />
       <div className="product-content">
         <p>{props.name}</p>
