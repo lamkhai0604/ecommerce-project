@@ -36,9 +36,9 @@ const CartBody = () => {
         />
       </div>
       <div className="offcanvas-body">
-        {CartItems.length > 0 ? (
+        {CartItems && totalAmount > 0 ? (
           <>
-            <div className="cartItems-product">
+            <div className="cartItems-product mb-3">
               {CartItems.map((item) => {
                 return (
                   <Product
@@ -70,7 +70,7 @@ const CartBody = () => {
 
             <Divider />
 
-            <div className="cartItems-btnGroup">
+            <div className="cartItems-btnGroup mt-3">
               <Button inverse data-bs-dismiss="offcanvas" aria-label="Close">
                 Close
               </Button>

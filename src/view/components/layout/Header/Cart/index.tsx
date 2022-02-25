@@ -1,5 +1,5 @@
 import { useAppSelector } from 'controllers/app/hooks';
-import { getCartItems } from 'controllers/feature/product/productSlice';
+import { getCartItems, getTotalAmount } from 'controllers/feature/product/productSlice';
 import { useEffect, useState } from 'react';
 import { ImCart } from 'react-icons/im';
 import CartBody from './CartBody';
@@ -8,6 +8,7 @@ import './style.css';
 const Cart = () => {
   //Redux
   const CartItems = useAppSelector(getCartItems);
+  const totalAmount = useAppSelector(getTotalAmount)
   //State
   const [btnHightLight, setBtnHighLight] = useState<boolean>(false);
 
@@ -33,7 +34,7 @@ const Cart = () => {
         aria-controls="offcanvasRight"
       >
         <ImCart />
-        <span>{numberCartItems}</span>
+        <span>{totalAmount === 0 ? 0 : numberCartItems}</span>
       </span>
 
       <CartBody />

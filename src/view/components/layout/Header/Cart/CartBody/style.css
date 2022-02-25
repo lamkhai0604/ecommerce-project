@@ -52,4 +52,11 @@
 
 .btn-order {
     margin: 0 0 0 1rem;
+    background-color: #292929;
+    color: #fff;
+    border: none;
+}
+
+.btn-order:hover {
+    background-color: #929292;
 }

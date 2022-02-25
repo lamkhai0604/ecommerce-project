@@ -117,11 +117,10 @@ const productsSlice = createSlice({
             if (existingItem.amount === 1) {
                 updatedItems = state.cartItems.filter(item => item.id === action.payload)
             } else {
-                let updatedItem = {...existingItem, amount: existingItem.amount - 1}
+                let updatedItem = { ...existingItem, amount: existingItem.amount - 1 }
                 updatedItems = [...state.cartItems]
                 updatedItems[existingCartItemIndex] = updatedItem;
             }
-
             state.cartItems = updatedItems;
             state.totalAmount = updatedTotalAmount;
         }

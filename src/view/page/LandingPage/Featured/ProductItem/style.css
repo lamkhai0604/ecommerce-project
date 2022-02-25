@@ -84,6 +84,7 @@
 .groupInfo-quantity .input-component label {
     width: 50%;
     display: inline-block;
+    margin-right: 5px;
 }
 
 .groupInfo-quantity button {
