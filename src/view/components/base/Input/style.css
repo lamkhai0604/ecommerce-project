@@ -19,9 +19,13 @@
 }
 
 .input-component input::placeholder {
-  color: #292929;
+  color: #929292;
   font-size: 14px;
   text-transform: capitalize;
+}
+
+.input-component input:focus {
+  outline: none;
 }
 
 .input-component label>span {

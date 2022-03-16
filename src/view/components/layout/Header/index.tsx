@@ -9,37 +9,37 @@ const Header = () => {
   const [headerStyle, setHeaderStyle] = useState<string>('');
 
   useEffect(() => {
-    document.addEventListener('scroll', onScroll);
+    document.addEventListener('scroll', () => {
+      setHeaderStyle(() => (window.scrollY > 400 ? 'scroll-nav' : ''));
+    });
   }, []);
 
-  const onScroll = () => {
-    setHeaderStyle(() => (window.scrollY > 400 ? 'navbar-scroll' : ''));
-  };
-
   return (
-    <div id="nav" className={`header ${headerStyle}`}>
-      <div className="header-menu">
-        <CustomLink className="header-menu_link" to="/">
-          Home
-        </CustomLink>
-        <CustomLink className="header-menu_link" to="specials">
-          Specials
-        </CustomLink>
-        <CustomLink className="header-menu_link" to="information">
-          About us
-        </CustomLink>
-      </div>
-      <div className="header-logo">
-        <span className="header-logo_main">Khai's</span>Shop
-      </div>
-      <div className="header-setting">
-        <Dropdown />
+    <div id="nav" className={`navbar ${headerStyle}`}>
+      <div className="container-fluid">
+        <div className="header-menu">
+          <CustomLink className="header-menu_link" to="/">
+            Home
+          </CustomLink>
+          <CustomLink className="header-menu_link" to="specials">
+            Specials
+          </CustomLink>
+          <CustomLink className="header-menu_link" to="information">
+            About us
+          </CustomLink>
+        </div>
+        <div className="header-logo">
+          <span className="header-logo_main">Khai's</span>Shop
+        </div>
+        <div className="header-setting">
+          <Dropdown />
 
-        <span className="header-setting_search mx-4">
-          <AiOutlineSearch />
-        </span>
+          <span className="header-setting_search mx-4">
+            <AiOutlineSearch />
+          </span>
 
-        <Cart />
+          <Cart />
+        </div>
       </div>
     </div>
   );

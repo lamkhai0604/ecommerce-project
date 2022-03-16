@@ -1,4 +1,5 @@
 import { ICartItem } from 'models';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 interface IProductProps {
@@ -9,6 +10,7 @@ interface IProductProps {
   price?: number;
   onAdd?: (item: ICartItem) => void;
   onRemove?: (id?: string) => void;
+  onDelete?: (id?: string) => void;
 }
 
 const Product = (props: IProductProps) => {
@@ -23,14 +25,14 @@ const Product = (props: IProductProps) => {
     <div className="product mb-3">
       <img src={props.imgUrl} alt="Product" width="90px" height="120px" />
       <div className="product-content">
-        <p>{props.name}</p>
+        <Link to={`product/${props.id}`}>{props.name}</Link>
         <div className="product-content_sum">
           <div>
             <span>{props.amount}</span>
             <span className="mx-2">x</span>
             <span style={{ fontWeight: 'bold', color: '#ff0055' }}>${props.price}</span>
           </div>
-          <div className="content-sum_icons">
+          <div className="content-sum_icons ms-2">
             <button
               type="button"
               className="btn btn-dark"
@@ -41,11 +43,19 @@ const Product = (props: IProductProps) => {
             </button>
             <button
               type="button"
-              className="btn btn-danger"
-              style={{ marginLeft: '7px', fontWeight: 'bold' }}
+              className="btn btn-warning"
+              style={{ margin: ' 0 5px', fontWeight: 'bold' }}
               onClick={props.onRemove && props.onRemove.bind(null, props.id)}
             >
               -
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              style={{ fontWeight: 'bold' }}
+              onClick={props.onDelete && props.onDelete.bind(null, props.id)}
+            >
+              x
             </button>
           </div>
         </div>

@@ -30,9 +30,8 @@
   object-fit: cover;
 }
 
-.cardpage-body img:hover~.popup {
+.topupAddToCart {
   animation: topup 5s ease;
-  pointer-events: auto;
 }
 
 @keyframes topup {

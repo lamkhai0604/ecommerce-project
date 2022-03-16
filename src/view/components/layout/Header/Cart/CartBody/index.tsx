@@ -1,7 +1,11 @@
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
-import { getCartItems, getTotalAmount, productActions } from 'controllers/feature/product/productSlice';
+import {
+  getCartItems,
+  getTotalAmount,
+  productActions,
+} from 'controllers/feature/product/productSlice';
 import { ICartItem } from 'models';
-import Button from 'view/components/base/Button';
+import { Link } from 'react-router-dom';
 import Divider from 'view/components/base/Divider';
 import Product from './Product';
 import './style.css';
@@ -20,6 +24,14 @@ const CartBody = () => {
     if (id) dispatch(productActions.removeItemCart(id));
   };
 
+  const doDeleteItemFromCart = (id: string) => {
+    if (id) {
+      let newCart = CartItems.filter((v) => v.id !== id)
+      console.log("newCart", newCart);
+      dispatch(productActions.deleteItemCart(newCart as ICartItem[]));
+    };
+  };
+
   return (
     <div
       className="offcanvas offcanvas-end"
@@ -36,7 +48,7 @@ const CartBody = () => {
         />
       </div>
       <div className="offcanvas-body">
-        {CartItems && totalAmount > 0 ? (
+        {CartItems.length > 0 ? (
           <>
             <div className="cartItems-product mb-3">
               {CartItems.map((item) => {
@@ -50,6 +62,7 @@ const CartBody = () => {
                     price={item.price}
                     onAdd={doAddItemToCart.bind(null, item)}
                     onRemove={doRemoveItemToCart.bind(null, item.id)}
+                    onDelete={doDeleteItemFromCart.bind(null, item.id)}
                   />
                 );
               })}
@@ -62,21 +75,28 @@ const CartBody = () => {
                 <span>Sub Total</span>
                 <span>{`$${totalAmount.toFixed(2)}`}</span>
               </div>
-              <div className="cartItems-amount_total">
+              <div className="cartItems-amount_subTotal">
+                <span>VAT (20%)</span>
+                <span>{`$${(totalAmount * 0.2).toFixed(2)}`}</span>
+              </div>
+              <div className="cartItems-amount_total mt-2">
                 <span>Total</span>
-                <span style={{ color: '#ff0055' }}>{`$${totalAmount.toFixed(2)}`}</span>
+                <span style={{ color: '#ff0055' }}>{`$${(
+                  totalAmount +
+                  (totalAmount - totalAmount * 0.8)
+                ).toFixed(2)}`}</span>
               </div>
             </div>
 
             <Divider />
 
             <div className="cartItems-btnGroup mt-3">
-              <button type="button" className="btn btn-outline-danger" data-bs-dismiss="offcanvas" aria-label="Close">
-                Close
-              </button>
-              <Button clsName="btn-order" inverse data-bs-dismiss="offcanvas" aria-label="Close">
-                Order
-              </Button>
+              <Link to="index/checkout" className="btn-viewCart">
+                <span>View cart</span>
+              </Link>
+              <Link to="/" className="btn-checkOut">
+                <span>Check out</span>
+              </Link>
             </div>
           </>
         ) : (

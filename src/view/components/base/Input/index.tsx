@@ -9,7 +9,7 @@ interface IInputState {
   max?: string;
   step?: string;
   required?: boolean;
-  defaultValue?: string;
+  defaultValue?: string | number;
 }
 
 interface ICheckboxState {
@@ -18,10 +18,11 @@ interface ICheckboxState {
 }
 
 interface IInputProps {
-  label?: string;
   clsName?: string;
+  label?: string;
   input?: IInputState;
   checkbox?: ICheckboxState;
+  disabled?: boolean
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
@@ -46,7 +47,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
             {props.input?.required && <span>*</span>}
             {props.label}
           </label>
-          <input className={props.clsName} id={props.input?.id} ref={ref} {...props.input} />
+          <input className={props.clsName} id={props.input?.id} ref={ref} {...props.input} disabled={props.disabled} />
         </div>
       )}
     </>

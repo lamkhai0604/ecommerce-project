@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import {
   getProductsList,
   getProductsListLoading,
-  productActions
+  productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
 import Empty from 'view/components/base/Empty';
@@ -21,30 +21,32 @@ const List = () => {
   }, [dispatch]);
 
   return (
-    <div className="featured-product">
-      <div className="featured-product_content">
-        <h3>Featured Products</h3>
-        <p>Add featured products to weekly line up</p>
-      </div>
-      <div className="featured-product_cardGroup">
-        <div className="cardGroup">
-          {(() => {
-            if (!ProductsList.length) return <Empty clsName="h-300">No data available.</Empty>;
-            if (isLoadingProductList && !ProductsList) return <Loading />;
-            return ProductsList.map((item) => {
-              return (
-                <ProductCard
-                  bottom
-                  key={item.id}
-                  id={item.id}
-                  imgUrl={item.imgUrl}
-                  name={item.name}
-                  price={item.price}
-                  starRating={item.starRating}
-                />
-              );
-            });
-          })()}
+    <div className="container-fluid">
+      <div className="featured-product">
+        <div className="featured-product_content">
+          <h3>Featured Products</h3>
+          <p>Add featured products to weekly line up</p>
+        </div>
+        <div className="featured-product_cardGroup">
+          <div className="cardGroup">
+            {(() => {
+              if (!ProductsList.length) return <Empty clsName="h-300">No data available.</Empty>;
+              if (isLoadingProductList && !ProductsList) return <Loading />;
+              return ProductsList.map((item) => {
+                return (
+                  <ProductCard
+                    bottom
+                    key={item.id}
+                    id={item.id}
+                    imgUrl={item.imgUrl}
+                    name={item.name}
+                    price={item.price}
+                    starRating={item.starRating}
+                  />
+                );
+              });
+            })()}
+          </div>
         </div>
       </div>
     </div>

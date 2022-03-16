@@ -1,32 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Shizuru&display=swap');
 
-.navbar-scroll {
+.scroll-nav {
+    width: 100%;
     top: auto !important;
     background-color: #fff;
     opacity: 0.9;
     z-index: 15;
-    position: fixed;
+    position: fixed !important;
     transition: all 3s ease-in-out;
 }
 
-.header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+.navbar {
+  flex-wrap: nowrap !important;
 }
 
 .header-menu {
-    width: 33%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 10px 0;
-    vertical-align: top;
-    padding: 0.7rem 0 0 0;
+    padding: 10px 4rem;
 }
 
 .header-menu_link {
@@ -44,7 +39,7 @@
 }
 
 .header-logo {
-    width: 33%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -62,12 +57,12 @@
 }
 
 .header-setting {
-    width: 33%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 2px 5rem 5px 17rem;
+    padding: 2px 3rem 5px 8rem;
 }
 
 .header-setting span {

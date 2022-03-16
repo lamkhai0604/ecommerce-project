@@ -38,7 +38,7 @@
     align-items: center;
 }
 
-.footer-info_brand--icons span {
+.footer-info_brand--icons a {
     border-radius: 50%;
     width: 30px;
     height: 30px;

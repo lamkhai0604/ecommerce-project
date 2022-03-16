@@ -5,8 +5,13 @@
     align-items: center;
 }
 
-.cartItems-product{
-    height: calc(100% - 27%);
+.offcanvas-body {
+    height: 100%;
+
+}
+
+.cartItems-product {
+    height: calc(100% - 45%);
     overflow-y: auto;
 }
 
@@ -46,22 +51,99 @@
 
 .cartItems-btnGroup {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.cartItems-btnGroup button {
-    margin-right: 0;
-}
-
-.btn-order {
-    margin: 0 0 0 1rem;
-    background-color: #292929;
-    color: #fff;
+.btn-viewCart {
+    width: 100%;
+    background-color: #EBEBEB;
+    color: #292929;
     border: none;
+    margin: 0 0 1rem 0;
+    padding: 5px 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
 }
 
+.btn-viewCart:hover {
+    background-color: rgb(255, 0, 85);
+    color: #fff;
+}
+
+.btn-viewCart>span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-viewCart>span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-viewCart:hover span {
+    padding-right: 25px;
+}
+
+.btn-viewCart:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.btn-checkOut {
+    width: 100%;
+    background-color: #EBEBEB;
+    color: #292929;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-checkOut>span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-checkOut>span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-checkOut:hover span {
+    padding-right: 25px;
+}
+
+.btn-checkOut:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* 
 .btn-order:hover {
     background-color: #929292;
-}
+} */

@@ -20,7 +20,7 @@ const RoutesApp = () => {
       {promotionModal && <PromotionModal onClose={() => setPromotionModal(false)} />}
 
       <Header />
-      {params.id ? <Carousel backgroundImg name={productName} /> : <Carousel />}
+      {params.id ? <Carousel id={params.id} name={productName} /> : <Carousel />}
 
       <Outlet />
 

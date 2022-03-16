@@ -19,19 +19,21 @@ const Recommend = () => {
   }, [dispatch]);
 
   return (
-    <div className="recommend">
-      <div className="recommend-container py-4">
-        <div className="recommend-content">
-          <span className="recommend-content_border" />
-          <h4>Recommended For You</h4>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-        <div className="recommend-product">
-          <SwiperCard data={RecommendProductsList} slidesPerView={5} spaceBetween={30} />
+    <div className="container-fluid">
+      <div className="recommend">
+        <div className="recommend-container py-4">
+          <div className="recommend-content">
+            <span className="recommend-content_border" />
+            <h4>Recommended For You</h4>
+            <p>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+              officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+          <div className="recommend-product">
+            <SwiperCard data={RecommendProductsList} slidesPerView={5} spaceBetween={30} />
+          </div>
         </div>
       </div>
     </div>

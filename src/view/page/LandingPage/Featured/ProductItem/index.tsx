@@ -37,6 +37,10 @@ const ProductItem = (props: IProductItemProps) => {
       dispatch(categoriesActions.fetchCategoryById(ProductItem.categoryId));
   }, [dispatch, ProductItem.categoryId]);
 
+  // useEffect(() => {
+  //   if (location.pathname !== `product/${ProductItem.id}?name=${ProductItem.name}`) navigate(`product/${ProductItem.id}?name=${ProductItem.name}`)
+  // }, [ProductItem.id, ProductItem.name, location.pathname, navigate])
+
   const handleSubmitQuantity = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const enteredValue = amountInputRef.current.value;
@@ -65,7 +69,7 @@ const ProductItem = (props: IProductItemProps) => {
         <div className="information-groupInfo">
           <h3>{ProductItem.name}</h3>
           <StarRating starRating={ProductItem.starRating} />
-          <span>${ProductItem.price}.00</span>
+          <span>${ProductItem.price?.toFixed(2)}</span>
           <ul>
             <li>
               Brand: <span>{ProductItem.brand}</span>

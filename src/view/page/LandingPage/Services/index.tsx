@@ -5,7 +5,7 @@ import './style.css';
 
 const Services = () => {
   return (
-    <>
+    <div className="container-fluid">
       <div className="services">
         <div className="services-icons">
           <span><FaShippingFast /></span>
@@ -23,7 +23,7 @@ const Services = () => {
           <p>Mirum est notare quam littera gothica, quam nunc putamus parum claram</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
