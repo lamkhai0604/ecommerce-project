@@ -31,7 +31,7 @@ const List = () => {
           <div className="cardGroup">
             {(() => {
               if (!ProductsList.length) return <Empty clsName="h-300">No data available.</Empty>;
-              if (isLoadingProductList && !ProductsList) return <Loading />;
+              if (isLoadingProductList && ProductsList) return <Loading />;
               return ProductsList.map((item) => {
                 return (
                   <ProductCard

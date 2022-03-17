@@ -1,4 +1,5 @@
 import Button from 'view/components/base/Button';
+import Radio from 'view/components/base/Radio';
 import Input from 'view/components/base/Input';
 import Modal from 'view/components/base/Modal';
 import './style.css';
@@ -26,17 +27,9 @@ const PromotionModal = (props: IPromotionModalProps) => {
                 placeholder: 'Please enter your email to subscribe',
               }}
             />
-            <Button size="small">
-              Subscribe
-            </Button>
+            <Button size="small">Subscribe</Button>
           </div>
-          <Input
-            label="Don't show again"
-            input={{
-              id: '1',
-              type: 'checkbox',
-            }}
-          />
+          <Radio label="Don't show this message again" />
         </div>
       </div>
     </Modal>

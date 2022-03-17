@@ -127,7 +127,7 @@ const productsSlice = createSlice({
         deleteItemCart(state, action: PayloadAction<ICartItem[]>) {
             let updatedTotalAmount = 0;
             action.payload.forEach((v) => {
-                updatedTotalAmount = v.amount * v.price
+                updatedTotalAmount += v.amount * v.price
             })
             state.cartItems = action.payload;
             state.totalAmount = updatedTotalAmount;

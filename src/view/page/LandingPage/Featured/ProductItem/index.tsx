@@ -9,6 +9,7 @@ import Button from 'view/components/base/Button';
 import Input from 'view/components/base/Input';
 import StarRating from 'view/components/base/ProductCard/StarRating';
 import ProductImg from 'view/components/base/ProductImg';
+import Banner from 'view/components/layout/Banner';
 import Subscribers from 'view/components/layout/Subscribers';
 import Description from './Description';
 import RelatedProduct from './RelatedProduct';
@@ -37,10 +38,6 @@ const ProductItem = (props: IProductItemProps) => {
       dispatch(categoriesActions.fetchCategoryById(ProductItem.categoryId));
   }, [dispatch, ProductItem.categoryId]);
 
-  // useEffect(() => {
-  //   if (location.pathname !== `product/${ProductItem.id}?name=${ProductItem.name}`) navigate(`product/${ProductItem.id}?name=${ProductItem.name}`)
-  // }, [ProductItem.id, ProductItem.name, location.pathname, navigate])
-
   const handleSubmitQuantity = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const enteredValue = amountInputRef.current.value;
@@ -55,74 +52,77 @@ const ProductItem = (props: IProductItemProps) => {
       name: ProductItem.name,
       amount: enteredValueNumber,
       price: ProductItem.price,
-      imgUrl: ProductItem.imgUrl
+      imgUrl: ProductItem.imgUrl,
     };
     dispatch(productActions.addItemIntoCart(item as ICartItem));
   };
 
   return (
-    <div className="productItem">
-      <div className="productItem-information">
-        <div className="information-productImg">
-          <ProductImg imgUrl={ProductItem.imgUrl} name={ProductItem.name} />
+    <>
+      <Banner name={ProductItem.name} />
+      <div className="productItem">
+        <div className="productItem-information">
+          <div className="information-productImg">
+            <ProductImg imgUrl={ProductItem.imgUrl} name={ProductItem.name} />
+          </div>
+          <div className="information-groupInfo">
+            <h3>{ProductItem.name}</h3>
+            <StarRating starRating={ProductItem.starRating} />
+            <span>${ProductItem.price?.toFixed(2)}</span>
+            <ul>
+              <li>
+                Brand: <span>{ProductItem.brand}</span>
+              </li>
+              <li>
+                Code: <span>{ProductItem.code}</span>
+              </li>
+              <li>
+                Description: <span>{ProductItem.description}</span>
+              </li>
+              <li>
+                Category: <span>{CategoryItem.name}</span>
+              </li>
+              <li>
+                Created at:{' '}
+                <span>
+                  {ProductItem.createdAt && new Date(ProductItem.createdAt).toLocaleString()}
+                </span>
+              </li>
+            </ul>
+            <form className="groupInfo-quantity" onSubmit={handleSubmitQuantity}>
+              <Input
+                label="Amount"
+                ref={amountInputRef}
+                input={{
+                  type: 'number',
+                  min: '1',
+                  max: '50',
+                  step: '1',
+                  defaultValue: '1',
+                }}
+              />
+
+              <Button inverse>
+                {' '}
+                <AiOutlineShoppingCart />
+                &nbsp;Add to cart
+              </Button>
+
+              {!isValid && <small>Please enter a valid amount (1-500).</small>}
+            </form>
+          </div>
         </div>
-        <div className="information-groupInfo">
-          <h3>{ProductItem.name}</h3>
-          <StarRating starRating={ProductItem.starRating} />
-          <span>${ProductItem.price?.toFixed(2)}</span>
-          <ul>
-            <li>
-              Brand: <span>{ProductItem.brand}</span>
-            </li>
-            <li>
-              Code: <span>{ProductItem.code}</span>
-            </li>
-            <li>
-              Description: <span>{ProductItem.description}</span>
-            </li>
-            <li>
-              Category: <span>{CategoryItem.name}</span>
-            </li>
-            <li>
-              Created at:{' '}
-              <span>
-                {ProductItem.createdAt && new Date(ProductItem.createdAt).toLocaleString()}
-              </span>
-            </li>
-          </ul>
-          <form className="groupInfo-quantity" onSubmit={handleSubmitQuantity}>
-            <Input
-              label="Amount"
-              ref={amountInputRef}
-              input={{
-                type: 'number',
-                min: '1',
-                max: '50',
-                step: '1',
-                defaultValue: '1',
-              }}
-            />
 
-            <Button inverse>
-              {' '}
-              <AiOutlineShoppingCart />
-              &nbsp;Add to cart
-            </Button>
-
-            {!isValid && <small>Please enter a valid amount (1-500).</small>}
-          </form>
+        <div className="productItem-description mb-5">
+          <h4>Description</h4>
+          <Description />
         </div>
+
+        <RelatedProduct categoryItem={CategoryItem} />
+
+        <Subscribers />
       </div>
-
-      <div className="productItem-description mb-5">
-        <h4>Description</h4>
-        <Description />
-      </div>
-
-      <RelatedProduct categoryItem={CategoryItem} />
-
-      <Subscribers />
-    </div>
+    </>
   );
 };
 

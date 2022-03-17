@@ -27,7 +27,6 @@ const CartBody = () => {
   const doDeleteItemFromCart = (id: string) => {
     if (id) {
       let newCart = CartItems.filter((v) => v.id !== id)
-      console.log("newCart", newCart);
       dispatch(productActions.deleteItemCart(newCart as ICartItem[]));
     };
   };
@@ -91,7 +90,7 @@ const CartBody = () => {
             <Divider />
 
             <div className="cartItems-btnGroup mt-3">
-              <Link to="index/checkout" className="btn-viewCart">
+              <Link to="index/route=cart" className="btn-viewCart">
                 <span>View cart</span>
               </Link>
               <Link to="/" className="btn-checkOut">
