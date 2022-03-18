@@ -36,7 +36,7 @@ const Cart = () => {
 
   return (
     <>
-      <Banner name="Shopping Cart" title="Shopping Cart" />
+      <Banner name="Shopping Cart" title="Shopping Cart" clsName="cart-banner" />
 
       {CartItems && CartItems.length > 0 ? (
         <div className="container-fluid pb-3 checkout">

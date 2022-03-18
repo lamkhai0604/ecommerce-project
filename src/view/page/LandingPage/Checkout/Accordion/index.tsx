@@ -1,4 +1,3 @@
-import Input from 'view/components/base/Input';
 import CheckoutOptions from './CheckoutOptions';
 import './style.css';
 

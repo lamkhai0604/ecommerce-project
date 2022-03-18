@@ -1,10 +1,10 @@
-import { ReactNode, useEffect, useState } from 'react';
-import Badge from './Badge';
-import StarRating from './StarRating';
 import no_image from 'assets/images/no_img.png';
+import { ReactNode, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Badge from './Badge';
 import Popup from './Popup';
+import StarRating from './StarRating';
 import './style.css';
-import { Link, useNavigate } from 'react-router-dom';
 
 interface IProductCardProps {
   id?: string;
