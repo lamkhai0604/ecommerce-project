@@ -6,6 +6,7 @@ import Cart from 'view/page/LandingPage/Cart';
 import Checkout from 'view/page/LandingPage/Checkout';
 import ProductItem from 'view/page/LandingPage/Featured/ProductItem';
 import NotFound from 'view/page/NotFound';
+import Register from 'view/page/Register';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="product/:id" element={<ProductItem />} />
         <Route path="specials" element={<NotFound />} />
         <Route path="information" element={<NotFound />} />
+        <Route path="register" element={<Register />} />
       </Route>
 
       {/* No other routes match */}
