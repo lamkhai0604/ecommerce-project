@@ -5,8 +5,8 @@ interface IInputState {
   id?: string;
   type?: string;
   placeholder?: string;
-  min?: string;
-  max?: string;
+  min?: number;
+  max?: number;
   step?: string;
   required?: boolean;
   defaultValue?: string | number;

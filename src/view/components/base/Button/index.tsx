@@ -12,6 +12,7 @@ interface ButtonProps {
   isLoading?: boolean;
   type?: 'button' | 'submit' | 'reset';
   clsName?: string;
+  radius?: boolean;
   onClick?(): void;
   children: ReactNode;
 }
@@ -26,6 +27,7 @@ const Button = ({
   type,
   disabled,
   clsName,
+  radius,
   onClick,
 }: ButtonProps) => {
   if (to) {
@@ -42,15 +44,21 @@ const Button = ({
   }
   return (
     <button
-      className={`${clsName} button button--${size || 'default'} ${inverse && 'button--inverse'} ${
-        danger && 'button--danger'
-      }`}
+      className={`
+        ${clsName} 
+        button button--${size || 'default'} 
+        ${inverse && 'button--inverse'} 
+        ${danger && 'button--danger'}
+        ${radius && 'border-black'}
+      `}
       type={type}
       onClick={onClick}
       disabled={disabled}
     >
-      {isLoading && <Loading />}
-      {children}
+        {children}
+      {/* <span className="d-flex flex-row justify-content-center align-items-center">
+        {isLoading && <Loading />}
+      </span> */}
     </button>
   );
 };

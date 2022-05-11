@@ -4,45 +4,43 @@ import './style.css';
 
 const PersonalDetailsForm = () => {
   return (
-    <form>
+    <form className="personal-detail">
       <h4>Your personal details</h4>
       <Divider />
-      <div>
-        <Input
-          label="First Name"
-          input={{
-            type: 'text',
-            placeholder: 'First Name',
-            required: true,
-          }}
-        />
-        <Input
-          label="Last Name"
-          input={{
-            type: 'text',
-            placeholder: 'Last Name',
-            required: true,
-          }}
-        />
-        <Input
-          label="Email"
-          input={{
-            type: 'mail',
-            placeholder: 'Email',
-            required: true,
-          }}
-        />
-        <Input
-          label="Phone"
-          input={{
-            type: 'number',
-            min: '10',
-            max: '11',
-            placeholder: 'Phone',
-            required: true,
-          }}
-        />
-      </div>
+      <Input
+        label="First Name"
+        input={{
+          type: 'text',
+          placeholder: 'First Name',
+          required: true,
+        }}
+      />
+      <Input
+        label="Last Name"
+        input={{
+          type: 'text',
+          placeholder: 'Last Name',
+          required: true,
+        }}
+      />
+      <Input
+        label="Email"
+        input={{
+          type: 'mail',
+          placeholder: 'Email',
+          required: true,
+        }}
+      />
+      <Input
+        label="Phone"
+        input={{
+          type: 'number',
+          min: 10,
+          max: 11,
+          placeholder: 'Phone',
+          required: true,
+        }}
+      />
       <h4>Your personal details</h4>
       <Divider />
       <div>
@@ -50,8 +48,8 @@ const PersonalDetailsForm = () => {
           label="Password"
           input={{
             type: 'password',
-            min: '8',
-            max: '15',
+            min: 8,
+            max: 15,
             placeholder: 'password',
             required: true,
           }}
@@ -60,8 +58,8 @@ const PersonalDetailsForm = () => {
           label="Password Confirm"
           input={{
             type: 'password',
-            min: '8',
-            max: '15',
+            min: 8,
+            max: 15,
             placeholder: 'password confirm',
             required: true,
           }}

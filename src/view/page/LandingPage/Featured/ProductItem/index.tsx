@@ -95,8 +95,8 @@ const ProductItem = (props: IProductItemProps) => {
                 ref={amountInputRef}
                 input={{
                   type: 'number',
-                  min: '1',
-                  max: '50',
+                  min: 1,
+                  max: 50,
                   step: '1',
                   defaultValue: '1',
                 }}

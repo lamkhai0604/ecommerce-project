@@ -25,7 +25,7 @@ const RegisterModal = (props: IRegisterProps) => {
             </p>
           </div>
 
-          <PersonalDetailsForm />
+            <PersonalDetailsForm />
         </div>
       </div>
     </Modal>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 import CustomLink from 'view/components/base/CustomLink';
 import Cart from './Cart';
 import Dropdown from './Dropdown';
@@ -28,9 +29,9 @@ const Header = () => {
             About us
           </CustomLink>
         </div>
-        <div className="header-logo">
-          <span className="header-logo_main">Khai's</span>Shop
-        </div>
+        <Link className="header-logo" to="/">
+          <span>Khai's</span>Shop
+        </Link>
         <div className="header-setting">
           <Dropdown />
 

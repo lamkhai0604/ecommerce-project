@@ -93,7 +93,7 @@ const CartBody = () => {
               <Link to="index/route=cart" className="btn-viewCart">
                 <span>View cart</span>
               </Link>
-              <Link to="/" className="btn-checkOut">
+              <Link to="index/route=cart/checkout" className="btn-checkOut">
                 <span>Check out</span>
               </Link>
             </div>

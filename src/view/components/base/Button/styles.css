@@ -59,3 +59,12 @@
 .button--big {
   font-size: 1.5rem;
 }
+
+.border-black {
+  background-color: #292929;
+  border-radius: 30px;
+  border: none;
+  width: 15%;
+  text-transform: uppercase;
+  margin-right: 0;
+}

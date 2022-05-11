@@ -1,0 +1,8 @@
+.personal-detail {
+    height: 23rem;
+    overflow-y: scroll
+}
+
+.personal-detail .input-component label {
+    padding: 0.7rem 0 0.5rem 0;
+}
