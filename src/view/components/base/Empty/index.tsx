@@ -9,8 +9,8 @@ interface IEmptyrops {
 const Empty = (props: IEmptyrops) => {
   return (
     <div className={props.clsName}>
-      <img src={empty_data} alt="Empty" />
       {props.children}
+      <img src={empty_data} alt="Empty" width="100%" height="100%"/>
     </div>
   );
 };

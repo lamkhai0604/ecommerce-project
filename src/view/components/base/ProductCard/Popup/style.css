@@ -8,9 +8,24 @@
     background-color: #fff;
     position: absolute;
     pointer-events:auto;
-    /* bottom: 2rem; */
-    /* visibility:hidden */
+    bottom: 0;
+    /* animation: topup 5s ease; */
+    /* transition: bottom 2s */
 }
+
+/* .popup:hover {
+    bottom: 2rem;
+} */
+
+@keyframes topup {
+    0% {
+      bottom: 0
+    }
+  
+    25% {
+      bottom: 2rem
+    }
+  }
 
 .popup p {
     margin: 0;

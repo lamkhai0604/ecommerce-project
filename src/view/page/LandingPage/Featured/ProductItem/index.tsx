@@ -93,10 +93,10 @@ const ProductItem = (props: IProductItemProps) => {
               <Input
                 label="Amount"
                 ref={amountInputRef}
+                min={1}
+              max={50}
                 input={{
                   type: 'number',
-                  min: 1,
-                  max: 50,
                   step: '1',
                   defaultValue: '1',
                 }}

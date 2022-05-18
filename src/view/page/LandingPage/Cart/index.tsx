@@ -61,7 +61,7 @@ const Cart = () => {
                       <td>{item.name}</td>
                       <td>
                         <div className="row">
-                          <div className="col-2">
+                          <div className="col-3">
                             <Input
                               ref={amountProductRef}
                               input={{

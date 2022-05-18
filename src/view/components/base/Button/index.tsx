@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading';
 import './styles.css';
 
 interface ButtonProps {
@@ -23,7 +22,6 @@ const Button = ({
   danger,
   inverse,
   to,
-  isLoading,
   type,
   disabled,
   clsName,
@@ -56,9 +54,6 @@ const Button = ({
       disabled={disabled}
     >
         {children}
-      {/* <span className="d-flex flex-row justify-content-center align-items-center">
-        {isLoading && <Loading />}
-      </span> */}
     </button>
   );
 };

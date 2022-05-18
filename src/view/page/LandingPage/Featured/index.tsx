@@ -1,7 +1,6 @@
-import List from "./List";
+import List from './List';
 
 const Features = () => {
-
   return (
     <>
       <List />

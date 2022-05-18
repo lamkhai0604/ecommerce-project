@@ -2,19 +2,16 @@
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
 import {
   getProductsList,
-  getProductsListLoading,
   productActions,
 } from 'controllers/feature/product/productSlice';
 import { useEffect } from 'react';
 import Empty from 'view/components/base/Empty';
-import Loading from 'view/components/base/Loading';
 import ProductCard from 'view/components/base/ProductCard';
 import './style.css';
 
 const List = () => {
   const dispatch = useAppDispatch();
   const ProductsList = useAppSelector(getProductsList);
-  const isLoadingProductList = useAppSelector(getProductsListLoading);
 
   useEffect(() => {
     dispatch(productActions.fetchProductsList(12));
@@ -30,8 +27,7 @@ const List = () => {
         <div className="featured-product_cardGroup">
           <div className="cardGroup">
             {(() => {
-              if (!ProductsList.length) return <Empty clsName="h-300">No data available.</Empty>;
-              if (isLoadingProductList && ProductsList) return <Loading />;
+              if (!ProductsList.length) return <Empty clsName="">No data available.</Empty>;
               return ProductsList.map((item) => {
                 return (
                   <ProductCard

@@ -5,8 +5,6 @@ interface IInputState {
   id?: string;
   type?: string;
   placeholder?: string;
-  min?: number;
-  max?: number;
   step?: string;
   required?: boolean;
   defaultValue?: string | number;
@@ -23,6 +21,8 @@ interface IInputProps {
   input?: IInputState;
   checkbox?: ICheckboxState;
   disabled?: boolean;
+  min?: number;
+  max?: number;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
@@ -35,6 +35,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
       <input
         className={props.clsName}
         id={props.input?.id}
+        min={props.min}
+        max={props.max}
         ref={ref}
         {...props.input}
         disabled={props.disabled}

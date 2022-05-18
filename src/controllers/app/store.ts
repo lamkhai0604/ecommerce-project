@@ -6,7 +6,8 @@ import { categoriesReducer } from 'controllers/feature/categories/categoriesSlic
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
-  products: productsReducer
+  products: productsReducer,
+  // global: globalReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()

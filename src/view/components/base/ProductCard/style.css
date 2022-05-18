@@ -30,20 +30,6 @@
   object-fit: cover;
 }
 
-.topupAddToCart {
-  animation: topup 5s ease;
-}
-
-@keyframes topup {
-  0% {
-    bottom: 0
-  }
-
-  25% {
-    bottom: 2rem
-  }
-}
-
 .cardpage-footer {
   padding: 1rem 0 0 0;
 }

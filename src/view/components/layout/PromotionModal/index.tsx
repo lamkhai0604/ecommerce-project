@@ -5,12 +5,14 @@ import Modal from 'view/components/base/Modal';
 import './style.css';
 
 interface IPromotionModalProps {
+  count?: number;
   onClose: () => void;
 }
 
 const PromotionModal = (props: IPromotionModalProps) => {
   return (
     <Modal onClose={props.onClose}>
+        <span className="">This advertisement will disappear in {props.count} seconds</span>
       <div className="promotion-modal">
         <div className="promotion-modal_content">
           <h3>Ten percent member discount</h3>

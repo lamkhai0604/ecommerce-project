@@ -17,7 +17,7 @@ interface IBackdropProps {
   onClose: () => void;
 }
 
-const Backdrop = (props: IBackdropProps) => {
+export const Backdrop = (props: IBackdropProps) => {
   return <div className="backdrop" onClick={props.onClose} />;
 };
 

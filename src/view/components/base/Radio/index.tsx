@@ -1,23 +1,22 @@
+import { FormControlLabel } from '@mui/material';
+
 interface IRadioProps {
   label?: string;
+  value?: string;
   disabled?: boolean;
   checked?: boolean;
+  onChange?: (e: React.SyntheticEvent) => void;
 }
 
 const Radio = (props: IRadioProps) => {
   return (
-    <div className="form-check">
-      <input
-        className="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault1"
-        defaultChecked={props.checked}
-      />
-      <label className="form-check-label" htmlFor="flexRadioDefault1">
-        {props.label}
-      </label>
-    </div>
+    <FormControlLabel
+      value={props.value}
+      control={
+        <Radio checked={props.checked} disabled={props.disabled} onChange={props.onChange} />
+      }
+      label={props.label}
+    />
   );
 };
 

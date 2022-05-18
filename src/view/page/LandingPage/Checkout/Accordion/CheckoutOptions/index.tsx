@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'view/components/base/Button';
 import Input from 'view/components/base/Input';

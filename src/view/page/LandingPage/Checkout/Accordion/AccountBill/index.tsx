@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import Button from 'view/components/base/Button';
 import Divider from 'view/components/base/Divider';
 import Input from 'view/components/base/Input';
-import Radio from 'view/components/base/Radio';
 import './style.css';
 
 interface ICheckoutProps {
@@ -20,7 +19,7 @@ const AccountBill = () => {
           <Input label="First Name" input={{ type: 'text', placeholder: 'First Name', required: true }} />
           <Input label="Last Name" input={{ type: 'text', placeholder: 'Last Name', required: true }} />
           <Input label="Email" input={{ type: 'email', placeholder: 'Email', required: true }} />
-          <Input label="Telephone" input={{ type: 'number', placeholder: 'Telephone', max: 11, required: true }} />
+          <Input label="Telephone" max={11} input={{ type: 'number', placeholder: 'Telephone', required: true }} />
           <h5>Your Personal Details</h5>
           <Divider />
           <Input label="Password" input={{ type: 'password', placeholder: 'Password', required: true }} />
