@@ -1,3 +1,4 @@
+import { SxProps, Theme } from '@mui/material';
 import { ErrorMessage, Field, FieldProps } from 'formik';
 import { forwardRef } from 'react';
 
@@ -21,7 +22,7 @@ interface IFormikFieldProps {
   as?: string | React.ComponentType<FieldProps['field']>;
   variant?: 'standard' | 'outlined';
   size?: 'medium' | 'small' | string;
-  sx?: Array<() => void | object | boolean> | (() => void) | object
+  sx?: SxProps<Theme>;
   onBlur?: () => void;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }

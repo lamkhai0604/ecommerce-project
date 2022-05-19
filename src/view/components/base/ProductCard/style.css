@@ -1,9 +1,17 @@
 .cardpage {
-  width: 210px;
-  display: block;
-  background-color: #fff;
-  cursor: pointer;
-  text-decoration: none;
+  position: relative;
+  transition: all 300ms ease-in-out;
+  overflow: hidden;
+  
+}
+
+.cardpage:hover {
+  background: #292929;
+  color: red;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0) translateZ(0);
+  transform: translateY(0) translateZ(0);
 }
 
 .box-shadow {

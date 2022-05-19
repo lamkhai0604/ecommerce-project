@@ -1,5 +1,6 @@
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { SxProps, Theme } from '@mui/material';
 
 interface ICheckBoxProps {
   required?: boolean;
@@ -9,12 +10,14 @@ interface ICheckBoxProps {
   label?: string;
   type?: string;
   id?: string;
+  sx?: SxProps<Theme>;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CheckBox = (props: ICheckBoxProps) => {
   return (
     <FormControlLabel
+      sx={props.sx}
       control={
         <Checkbox
           id={props.id}

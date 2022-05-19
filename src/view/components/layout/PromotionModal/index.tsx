@@ -31,7 +31,7 @@ const PromotionModal = (props: IPromotionModalProps) => {
             />
             <Button size="small">Subscribe</Button>
           </div>
-          <Radio label="Don't show this message again" />
+          <Radio label="Don't show this message again" value="promotionMess" name="promotionMess" />
         </div>
       </div>
     </Modal>

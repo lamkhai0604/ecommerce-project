@@ -12,6 +12,7 @@ import './style.css';
 const List = () => {
   const dispatch = useAppDispatch();
   const ProductsList = useAppSelector(getProductsList);
+  console.log(ProductsList);
 
   useEffect(() => {
     dispatch(productActions.fetchProductsList(12));
@@ -31,10 +32,10 @@ const List = () => {
               return ProductsList.map((item) => {
                 return (
                   <ProductCard
-                    bottom
                     key={item.id}
                     id={item.id}
                     imgUrl={item.imgUrl}
+                    description={item.description}
                     name={item.name}
                     price={item.price}
                     starRating={item.starRating}

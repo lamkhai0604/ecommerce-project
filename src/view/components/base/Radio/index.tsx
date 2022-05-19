@@ -1,23 +1,33 @@
-import { FormControlLabel } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Radio, FormControlLabel, SxProps, Theme } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 interface IRadioProps {
-  label?: string;
-  value?: string;
-  disabled?: boolean;
   checked?: boolean;
-  onChange?: (e: React.SyntheticEvent) => void;
+  disabled?: boolean;
+  value?: string;
+  label?: string;
+  name?: string;
+  className?: string;
+  sx?: SxProps<Theme>
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Radio = (props: IRadioProps) => {
+export default function RadioButtons(props: IRadioProps) {
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue((e.target as HTMLInputElement).value);
+  };
+
   return (
     <FormControlLabel
-      value={props.value}
-      control={
-        <Radio checked={props.checked} disabled={props.disabled} onChange={props.onChange} />
-      }
       label={props.label}
+      value={props.value}
+      name={props.name}
+      sx={props.sx}
+      className={props.className}
+      control={<Radio checked={selectedValue === props.value} disabled={props.disabled} onChange={handleChange} sx={{'&.Mui-checked': {color: grey[900]}}} />}
     />
   );
-};
-
-export default Radio;
+}

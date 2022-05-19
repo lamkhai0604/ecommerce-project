@@ -36,8 +36,6 @@ const RoutesApp = () => {
 
       <Outlet />
 
-      
-
       <Footer />
       {/* {isLoading && 
       <Loading />} */}
