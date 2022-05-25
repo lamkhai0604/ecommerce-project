@@ -1,21 +1,24 @@
 //Redux
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
-import {
-  getProductsList,
-  productActions,
-} from 'controllers/feature/product/productSlice';
-import { useEffect } from 'react';
+import { getProductsList, productActions } from 'controllers/feature/product/productSlice';
+import { useEffect, useState } from 'react';
 import Empty from 'view/components/base/Empty';
 import ProductCard from 'view/components/base/ProductCard';
 import './style.css';
 
 const List = () => {
+  //State
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  //Redux
   const dispatch = useAppDispatch();
   const ProductsList = useAppSelector(getProductsList);
-  console.log(ProductsList);
 
   useEffect(() => {
-    dispatch(productActions.fetchProductsList(12));
+    (async () => {
+      setIsLoading(true);
+      await dispatch(productActions.fetchProductsList(12));
+      setIsLoading(false);
+    })();
   }, [dispatch]);
 
   return (

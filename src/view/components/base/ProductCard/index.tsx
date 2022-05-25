@@ -1,9 +1,7 @@
 import no_image from 'assets/images/no_img.png';
-import React, { ReactNode, useEffect, useState } from 'react';
-import Badge from './Badge';
+import { ReactNode, useState } from 'react';
 import Popup from './Popup';
 import StarRating from './StarRating';
-// import './style.css';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -29,58 +27,6 @@ interface IProductCardProps {
   oldPrice?: number;
   children?: ReactNode;
 }
-
-// const ProductCard = (props: IProductCardProps) => {
-//   const [imgUrl, setImgUrl] = useState<string>('');
-//   const [showPopup, setIShowpopup] = useState<string>('');
-//   let to = `product/${props.id}?name=${props.name}`;
-
-//   useEffect(() => {
-//     setTimeout(() => {
-//       if (props.imgUrl) setImgUrl(props.imgUrl);
-//       else setImgUrl(no_image);
-//     }, 5000);
-//   }, [props.imgUrl]);
-
-//   const showPopupHandler = () => {
-//     // setIShowpopup("popup")
-//   };
-
-//   // const hidePopupHandler = () => {
-//   //   setIShowpopup("")
-//   // };
-
-//   return (
-//     <Link to={to} className={`cardpage ${props.clsName} ${props.shadow && 'box-shadow'}`}>
-//       <div id="topUpHandler" className="cardpage-body">
-//         <div className="cardpage-body_badge">
-//           {props.discount && <Badge />}
-//           {props.newArrival && <Badge />}
-//         </div>
-//         <img
-//           src={imgUrl}
-//           alt={props.name}
-//           width="270"
-//           height="360"
-//           // onMouseOver={showPopupHandler}
-//           // onMouseOut={hidePopupHandler}
-//         />
-//         {/* {showPopup && <Popup clsName={showPopup} showPopupHandler={showPopupHandler} />} */}
-//         <Popup clsName={showPopup} showPopupHandler={showPopupHandler} />
-//       </div>
-//       <div className={`cardpage-footer ${props.bottom && 'mb-4'} ${props.grey && 'bgc-grey'}`}>
-//         <StarRating starRating={props.starRating} />
-//         <p>{props.name}</p>
-//         <div className="footer-price">
-//           <span className="price-new">${props.price}.00</span>
-//           {props.oldPrice ? <span className="price-old">$90.00</span> : null}
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// };
-
-// export default ProductCard;
 
 export default function ProductCard(props: IProductCardProps) {
   const [showPopup, setIShowpopup] = useState<string>('');

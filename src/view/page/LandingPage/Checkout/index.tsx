@@ -1,6 +1,5 @@
 import Divider from 'view/components/base/Divider';
 import Banner from 'view/components/layout/Banner';
-import Subscribers from 'view/components/layout/Subscribers';
 import Accordion from './Accordion';
 import './style.css';
 
@@ -12,8 +11,6 @@ const Checkout = () => {
         <Accordion />
 
         <Divider />
-
-        <Subscribers />
       </div>
     </>
   );

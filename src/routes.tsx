@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from 'view/components/layout/Footer';
 import Header from 'view/components/layout/Header';
 import PromotionModal from 'view/components/layout/PromotionModal';
+import Subscribers from 'view/components/layout/Subscribers';
 
 const RoutesApp = () => {
   //State
@@ -35,6 +36,8 @@ const RoutesApp = () => {
       <Header />
 
       <Outlet />
+
+      <Subscribers />
 
       <Footer />
       {/* {isLoading && 

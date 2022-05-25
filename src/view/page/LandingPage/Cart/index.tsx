@@ -9,7 +9,6 @@ import { ICartItem } from 'models';
 import Accordion from './Accordion';
 import SubInfo from './SubInfo';
 import Divider from 'view/components/base/Divider';
-import Subscribers from 'view/components/layout/Subscribers';
 import Banner from 'view/components/layout/Banner';
 import BtnGroup from './BtnGroup';
 import Button from 'view/components/base/Button';
@@ -114,8 +113,6 @@ const Cart = () => {
           <BtnGroup />
 
           <Divider />
-
-          <Subscribers />
         </div>
       ) : (
         <div className="container-fluid my-5 checkout">

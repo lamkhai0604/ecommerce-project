@@ -1,7 +1,12 @@
+import React from 'react';
 import './style.css'
 
-const Divider = () => {
-    return <div className="divider" />
+interface IDividerProps {
+    clsName?: string
+}
+
+const Divider = (props:IDividerProps) => {
+    return <div className={`divider ${props.clsName}`} />
 }
 
 export default Divider;

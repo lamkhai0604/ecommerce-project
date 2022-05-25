@@ -59,7 +59,7 @@
     line-height: 22px;
     padding: 10px 0;
 }
-
+/* 
 .groupInfo-quantity {
     width: 100%;
     display: flex;
@@ -93,8 +93,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0;
-    /* width: 30%; */
-}    
+}     */
 .productItem-description {
     width: 100%;
     margin-top: 60px;
