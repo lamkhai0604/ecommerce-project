@@ -1,8 +1,8 @@
-import { SxProps, Theme } from '@mui/material';
-import { ErrorMessage, Field, FieldProps } from 'formik';
+import { SxProps, TextField, Theme } from '@mui/material';
+import { ErrorMessage, Field, FieldProps, useField } from 'formik';
 import { forwardRef } from 'react';
 
-interface IFormikFieldProps {
+interface IInputProps {
   id?: string;
   name: string;
   label?: string;
@@ -14,24 +14,23 @@ interface IFormikFieldProps {
   required?: boolean;
   disabled?: boolean;
   autoFocus?: boolean;
-  readOnly?: boolean;
+  error?: boolean;
   fullWidth?: boolean;
   focused?: boolean;
   formControl?: boolean;
   defaultValue?: string | number;
   as?: string | React.ComponentType<FieldProps['field']>;
   variant?: 'standard' | 'outlined';
-  size?: 'medium' | 'small' | string;
+  size?: "small" | "medium" | undefined;
   sx?: SxProps<Theme>;
   onBlur?: () => void;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }
 
-const FormikField = forwardRef<HTMLInputElement, IFormikFieldProps>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   return (
-    <Field
+    <TextField
       id={props.id}
-      as={props.as}
       inputRef={ref}
       label={props.label}
       className={props.clsName}
@@ -46,15 +45,13 @@ const FormikField = forwardRef<HTMLInputElement, IFormikFieldProps>((props, ref)
       autoFocus={props.autoFocus}
       onChange={props.onChange}
       onBlur={props.onBlur}
-      readOnly={props.readOnly}
-      size={props.size}
+      error={props.error}
       fullWidth={props.fullWidth}
       focused={props.focused}
-      formControl={props.formControl}
+      size={props.size}
       sx={props.sx}
-      helperText={<ErrorMessage name={props.name} />}
     />
   );
 });
 
-export default FormikField;
+export default Input;

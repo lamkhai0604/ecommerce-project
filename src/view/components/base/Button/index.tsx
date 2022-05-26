@@ -17,7 +17,7 @@ interface ButtonProps {
   clsName?: string;
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string;
   radius?: boolean;
-  onClick?(): void;
+  onClick?: () => void;
   children: ReactNode;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -59,6 +59,7 @@ const MuiButton = (props: ButtonProps) => {
           size={props.size}
           startIcon={props.startIcon}
           endIcon={props.endIcon}
+          type={props.type}
         >
           {props.children}
         </Button>
