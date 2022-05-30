@@ -19,9 +19,10 @@
 
 .cancelBtnModal {
   background-color: black;
-  width: 3%;
   color: #fff;
-  font-family: 'Balsamiq Sans', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  width: 3%;
   display: flex;
   flex-direction: row;
   justify-content: center;
