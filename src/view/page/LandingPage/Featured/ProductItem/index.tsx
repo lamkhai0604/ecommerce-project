@@ -11,9 +11,8 @@ import ProductImg from 'view/components/base/ProductImg';
 import Banner from 'view/components/layout/Banner';
 import Description from './Description';
 import RelatedProduct from './RelatedProduct';
-import './style.css';
 import TextField from 'view/components/base/FormikField';
-import { Grid, Paper, styled, Typography } from '@mui/material';
+import { Grid, Paper, Typography } from '@mui/material';
 import Divider from 'view/components/base/Divider';
 
 const ProductItem = () => {
@@ -109,14 +108,16 @@ const ProductItem = () => {
             </form>
           </Grid>
         </Grid>
+
+        <h4 className="mt-3">Description</h4>
+        <Description />
+
+        <RelatedProduct categoryItem={CategoryItem} />
       </Paper>
 
-      <div className="productItem-description mb-5">
-        <h4>Description</h4>
-        <Description />
-      </div>
+    
 
-      <RelatedProduct categoryItem={CategoryItem} />
+      
     </>
   );
 };

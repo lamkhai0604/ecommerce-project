@@ -1,3 +1,4 @@
+import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -16,33 +17,51 @@ const Header = () => {
   }, []);
 
   return (
-    <div id="nav" className={`navbar ${headerStyle}`}>
-      <div className="container-fluid">
-        <div className="header-menu">
-          <CustomLink className="header-menu_link" to="/">
-            Home
-          </CustomLink>
-          <CustomLink className="header-menu_link" to="specials">
-            Specials
-          </CustomLink>
-          <CustomLink className="header-menu_link" to="information">
-            About us
-          </CustomLink>
-        </div>
+    <Grid container spacing={12}>
+      <Grid item xs={4} sx={{ textAlign: 'center', margin: 'auto' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <CustomLink className="header-menu_link" to="/">
+              Home
+            </CustomLink>
+          </Grid>
+          <Grid item xs={4}>
+            <CustomLink className="header-menu_link" to="specials">
+              Specials
+            </CustomLink>
+          </Grid>
+          <Grid item xs={4}>
+            <CustomLink className="header-menu_link" to="information">
+              About us
+            </CustomLink>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={4}>
         <Link className="header-logo" to="/">
           <span>Khai's</span>Shop
         </Link>
-        <div className="header-setting">
-          <Dropdown />
+      </Grid>
 
-          <span className="header-setting_search mx-4">
-            <AiOutlineSearch />
-          </span>
-
-          <Cart />
-        </div>
-      </div>
-    </div>
+      <Grid item xs={3} sx={{ textAlign: 'center', margin: 'auto' }}>
+        <Grid container>
+          <Grid item sx={{ margin: 'auto' }}>
+            <Typography variant="h6" gutterBottom component="div">
+              <Dropdown />
+            </Typography>
+          </Grid>
+          <Grid item sx={{ margin: 'auto' }}>
+            <Typography variant="h6" gutterBottom component="div" sx={{ cursor: 'pointer' }}>
+              <AiOutlineSearch />
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Cart />
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

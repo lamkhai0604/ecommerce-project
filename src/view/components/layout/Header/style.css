@@ -10,20 +10,6 @@
     transition: all 3s ease-in-out;
 }
 
-.navbar {
-  flex-wrap: nowrap !important;
-}
-
-.header-menu {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 10px 4rem;
-}
-
 .header-menu_link {
     color: #292929;
     font-size: 14px;
@@ -60,21 +46,4 @@
 .header-logo span {
     font-weight: 600;
     padding: 0 10px 0 0;
-}
-
-.header-setting {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 3rem 5px 8rem;
-}
-
-.header-setting span {
-    font-size: 1.3rem;
-}
-
-.header-setting_search {
-    cursor: pointer;
 }
