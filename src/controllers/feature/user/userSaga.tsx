@@ -25,5 +25,5 @@ function* createNewUserApi(action: PayloadAction<IUser>) {
 
 export default function* productSaga() {
     yield takeLatest(userActions.fetchUserList.type, fetchUserListApi);
-    yield takeLatest(userActions.fetchUserList.type, createNewUserApi);
+    yield takeLatest(userActions.addNewUser.type, createNewUserApi);
   }

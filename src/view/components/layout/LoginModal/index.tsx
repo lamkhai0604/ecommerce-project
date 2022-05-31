@@ -1,5 +1,9 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+import { MutableRefObject, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Button from 'view/components/base/Button';
 import Divider from 'view/components/base/Divider';
+import Input from 'view/components/base/FormikField';
 import Modal from 'view/components/base/Modal';
 
 interface ILoginModalProps {
@@ -7,6 +11,16 @@ interface ILoginModalProps {
 }
 
 const LoginModal = (props: ILoginModalProps) => {
+  //State
+  const [isLoading, setIsLoading] = useState(false);
+  const [emailValid, setEmailValid] = useState({ error: false, message: '' });
+  const [passwordValid, setPasswordValid] = useState({ error: false, message: '' });
+  //Ref
+  const emailRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
+  const paswordRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
+
+  const handleSubmitLogin = () => {};
+
   return (
     <Modal onClose={props.onClose}>
       <Box sx={{ width: '100%', padding: 3 }}>
@@ -23,7 +37,7 @@ const LoginModal = (props: ILoginModalProps) => {
             '&::before': {
               position: 'absolute',
               content: '""',
-              borderTop: '4px solid #292929',
+              borderTop: '4px solid rgb(255, 0, 85)',
               width: 430,
               bottom: -13,
             },
@@ -43,6 +57,49 @@ const LoginModal = (props: ILoginModalProps) => {
               I am a returning customer
             </Typography>
           </Typography>
+
+          <form onChange={handleSubmitLogin}>
+            <Input
+              name="email"
+              label="Email Address"
+              ref={emailRef}
+              type="email"
+              fullWidth
+              sx={{ marginBottom: '1rem' }}
+              error={emailValid.error}
+              helperText={emailValid.message}
+              required
+            />
+            <Input
+              name="password"
+              label="Password"
+              ref={paswordRef}
+              type="password"
+              fullWidth
+              sx={{ marginBottom: '1rem' }}
+              error={passwordValid.error}
+              helperText={passwordValid.message}
+              required
+            />
+            <Grid container spacing={2}>
+              <Grid item xs={2}>
+                <Button type="submit" variant="contained" size="large" isLoading={isLoading} sx={{borderRadius: 10, backgroundColor: '#292929', width: '100%'}}>
+                  Login
+                </Button>
+              </Grid>
+              <Grid item xs={4}>
+                <Button type="submit" variant="contained" size="large" isLoading={isLoading} sx={{borderRadius: 10, backgroundColor: '#292929', width: '100%'}}>
+                  Create an account
+                </Button>
+              </Grid>
+              <Grid item xs={3}></Grid>
+              <Grid item xs={3}>
+                <Link to="/">
+                    Forgotten Password
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
         </Typography>
       </Box>
     </Modal>

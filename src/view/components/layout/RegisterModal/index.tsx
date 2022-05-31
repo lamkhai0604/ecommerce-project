@@ -24,7 +24,7 @@ const RegisterModal = (props: IRegisterProps) => {
             '&::before': {
               position: 'absolute',
               content: '""',
-              borderTop: '4px solid #292929',
+              borderTop: '4px solid rgb(255, 0, 85)',
               width: 430,
               bottom: -13,
             },

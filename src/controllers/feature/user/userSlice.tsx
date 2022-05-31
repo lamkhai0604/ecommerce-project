@@ -37,7 +37,8 @@ const userSlice = createSlice({
             state.userList.isLoaded = true;
         },
         addNewUser(state, action: PayloadAction<IUser>) {
-            state.userList.items.push(action.payload)
+            console.log("Add new user")
+            // state.userList.items.push(action.payload)
         }
     }
 })

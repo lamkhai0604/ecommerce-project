@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
+import { SxProps, Theme } from '@mui/material';
 
 interface ButtonProps {
   danger?: boolean;
@@ -20,6 +21,7 @@ interface ButtonProps {
   children: ReactNode;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  sx?: SxProps<Theme> | undefined
 }
 
 const MuiButton = (props: ButtonProps) => {
@@ -45,6 +47,7 @@ const MuiButton = (props: ButtonProps) => {
           startIcon={props.startIcon}
           endIcon={props.endIcon}
           type={props.type}
+          sx={props.sx}
         >
           {props.children}
         </Button>

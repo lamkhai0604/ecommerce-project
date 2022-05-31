@@ -150,11 +150,11 @@ const PersonalDetailsForm = (props: IPersonalDetailsFormProps) => {
           sx={{ marginBottom: '1rem' }}
           required
         />
-        <div className="d-flex justify-content-end my-3">
-          <Button type="submit" variant="contained" size="large" isLoading={isLoading}>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+          <Button type="submit" variant="contained" size="large" isLoading={isLoading} sx={{borderRadius: 10, backgroundColor: '#292929', width: '20%'}}>
             Continue
           </Button>
-        </div>
+        </Box>
       </form>
     </Box>
   );
