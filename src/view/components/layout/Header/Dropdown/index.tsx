@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { AiFillSetting } from 'react-icons/ai';
 import RegisterModal from 'view/components/layout/RegisterModal';
+import LoginModal from 'view/components/layout/LoginModal';
 import './style.css';
 
 const Dropdown = () => {
   const [registerModal, setRegisterModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useState<boolean>(false);
 
   return (
     <>
       {registerModal && <RegisterModal onClose={() => setRegisterModal(false)} />}
+      {loginModal && <LoginModal onClose={() => setLoginModal(false)} />}
 
       <span className="header-setting_setting dropdown">
         <AiFillSetting
@@ -24,7 +27,7 @@ const Dropdown = () => {
             </span>
           </li>
           <li>
-            <span className="dropdown-item">Login</span>
+            <span className="dropdown-item" onClick={() => setLoginModal(true)}>Login</span>
           </li>
         </ul>
       </span>

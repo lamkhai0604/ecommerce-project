@@ -12,7 +12,7 @@ function* fetchProductsListApi(action: PayloadAction<number>) {
     });
     yield put(productActions.fetchProductsListSuccess(res.data));
   } catch (err) {
-    yield put(productActions.fetchProductsListFailure());
+    yield put(productActions.fetchProductsListFailure("Data not found"));
   }
 }
 

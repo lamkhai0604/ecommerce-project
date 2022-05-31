@@ -1,8 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 import Button from '@mui/material/Button';
-import './styles.css';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 interface ButtonProps {
   danger?: boolean;
@@ -24,32 +23,18 @@ interface ButtonProps {
 }
 
 const MuiButton = (props: ButtonProps) => {
-  const [isLoad, setIsLoad] = useState(false);
-
-  useEffect(() => {
-    if (props.isLoading === true) {
-      setTimeout(() => setIsLoad(true), 1000);
-    }
-  }, [props.isLoading]);
-  // if (to) {
-  //   return (
-  //     <Link
-  //       to={to}
-  //       className={`button button--${size || 'default'} ${inverse && 'button--inverse'} ${
-  //         danger && 'button--danger'
-  //       }`}
-  //     >
-  //       {children}
-  //     </Link>
-  //   );
-  // }
   return (
     <>
-      {isLoad ? (
-        <LoadingButton 
-        loading={true}
-        variant="outlined"
-        disabled>{props.children}</LoadingButton>
+      {props.isLoading ? (
+        <LoadingButton
+          loading
+          loadingPosition="start"
+          variant="outlined"
+          startIcon={<SaveIcon />}
+          size="large"
+        >
+          Continue
+        </LoadingButton>
       ) : (
         <Button
           variant={props.variant}

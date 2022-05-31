@@ -42,11 +42,11 @@ const productsSlice = createSlice({
             state.productList.isLoaded = true;
             state.productList.items = action.payload;
         },
-        fetchProductsListFailure(state) {
+        fetchProductsListFailure(state, action: PayloadAction<string>) {
             state.productList.isLoading = true;
             state.productList.isLoaded = false;
             state.productList.items = [];
-            state.productList.errorMsg = "Data not found, please try again.";
+            state.productList.errorMsg = action.payload;
         },
 
         fetchRecommendProductsList(state, action: PayloadAction<number>) {
@@ -76,7 +76,7 @@ const productsSlice = createSlice({
             state.productItem.isLoaded = true;
             state.productItem.item = action.payload;
         },
-        fetchProductByIdFailure(state) {
+        fetchProductByIdFailure(state, action: PayloadAction) {
             state.productItem.isLoading = true;
             state.productItem.isLoaded = false;
             state.productItem.item = {};

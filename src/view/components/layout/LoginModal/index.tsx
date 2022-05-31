@@ -1,13 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import Divider from 'view/components/base/Divider';
 import Modal from 'view/components/base/Modal';
-import PersonalDetailsForm from './PersonalDetailsForm';
 
-interface IRegisterProps {
+interface ILoginModalProps {
   onClose: () => void;
 }
 
-const RegisterModal = (props: IRegisterProps) => {
+const LoginModal = (props: ILoginModalProps) => {
   return (
     <Modal onClose={props.onClose}>
       <Box sx={{ width: '100%', padding: 3 }}>
@@ -36,19 +35,17 @@ const RegisterModal = (props: IRegisterProps) => {
         <Divider />
 
         <Typography gutterBottom component="div" sx={{ width: '100%', padding: '2rem 0 0 0' }}>
-          <Typography
-            component="div"
-            gutterBottom
-            sx={{ display: 'inline-block', width: '100%' }}
-          >
-            <Typography variant="h5" gutterBottom>Register Account</Typography>
-            <Typography variant="subtitle1">If you already have an account with us, please login at the <span>login form</span></Typography>
+          <Typography component="div" gutterBottom sx={{ display: 'inline-block', width: '100%' }}>
+            <Typography variant="h5" gutterBottom>
+              Returning Customer
+            </Typography>
+            <Typography variant="subtitle2" gutterBottom>
+              I am a returning customer
+            </Typography>
           </Typography>
-          <PersonalDetailsForm onClose={props.onClose} />
         </Typography>
       </Box>
     </Modal>
   );
 };
-
-export default RegisterModal;
+export default LoginModal;

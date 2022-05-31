@@ -14,7 +14,7 @@ const productsApi = {
         const url = `/products/${id}`
         return axiosClient.get(url)
     },
-    add(data: IProductItem): Promise<IProductItem> {
+    addProductItem(data: IProductItem): Promise<IProductItem> {
         const url = '/products'
         return axiosClient.post(url, data)
     },

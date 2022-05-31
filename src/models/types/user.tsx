@@ -18,5 +18,5 @@ export interface IUserList {
 
 export interface IUserState {
     user: IUser;
-    list: IUserList;
+    userList: IUserList;
 }

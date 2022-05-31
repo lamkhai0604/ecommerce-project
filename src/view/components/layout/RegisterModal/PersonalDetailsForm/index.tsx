@@ -9,14 +9,18 @@ import { userActions } from 'controllers/feature/user/userSlice';
 import { IUser } from 'models/types/user';
 import { v4 as uuidv4 } from 'uuid';
 
-const PersonalDetailsForm = () => {
-  //State
-  const [firstNameValid, setFirstNameValid] = useState({ error: false, message: "" });
-  const [lastNameValid, setLastNameValid] = useState({ error: false, message: "" });
-  const [emailValid, setEmailValid] = useState({ error: false, message: "" });
-  const [phoneValid, setPhoneValid] = useState({ error: false, message: "" });
-  const [passwordValid, setPasswordValid] = useState({ error: false, message: "" });
+interface IPersonalDetailsFormProps {
+  onClose: () => void;
+}
 
+const PersonalDetailsForm = (props: IPersonalDetailsFormProps) => {
+  //State
+  const [isLoading, setIsLoading] = useState(false);
+  const [firstNameValid, setFirstNameValid] = useState({ error: false, message: '' });
+  const [lastNameValid, setLastNameValid] = useState({ error: false, message: '' });
+  const [emailValid, setEmailValid] = useState({ error: false, message: '' });
+  const [phoneValid, setPhoneValid] = useState({ error: false, message: '' });
+  const [passwordValid, setPasswordValid] = useState({ error: false, message: '' });
   //Redux
   const dispatch = useAppDispatch();
   //Ref
@@ -39,31 +43,37 @@ const PersonalDetailsForm = () => {
       password: paswordRef.current.value,
     };
     if (formValues.firstName.trim().length === 0) {
-      setFirstNameValid({error: true, message: "Please enter a valid first name"})
+      setFirstNameValid({ error: true, message: 'Please enter a valid first name' });
       return;
     }
     if (formValues.lastName.trim().length === 0) {
-      setLastNameValid({error: true, message: "Please enter a valid last name"})
+      setLastNameValid({ error: true, message: 'Please enter a valid last name' });
       return;
     }
     if (formValues.email.trim().length === 0) {
-      setEmailValid({error: true, message: "Please enter a valid email"})
+      setEmailValid({ error: true, message: 'Please enter a valid email' });
       return;
     }
     if (formValues.phone.trim().length === 0) {
-      setPhoneValid({error: true, message: "Please enter a valid phone"})
+      setPhoneValid({ error: true, message: 'Please enter a valid phone' });
       return;
     }
     if (formValues.password !== paswordConfirmRef.current.value) {
-      setPasswordValid({error: true, message: "Wrong password, please try again."});
+      setPasswordValid({ error: true, message: 'Wrong password, please try again.' });
       return;
     }
-    dispatch(userActions.addNewUser(formValues))
-    toast.success(`Thanks ${formValues.firstName}. We are glad that you joined us. Here is the coupon for you to exclusively use on our website. Have a nice day`)
+    dispatch(userActions.addNewUser(formValues));
+    toast.success(
+      `Thanks ${formValues.firstName}. We are glad that you joined us. Here is the coupon for you to exclusively use on our website. Have a nice day`
+    );
+    setIsLoading(true);
+    setTimeout(() => {
+      props.onClose();
+    }, 1000);
   };
 
   return (
-    <Box sx={{height: 400, overflow: 'auto'}}>
+    <Box sx={{ height: 400, overflow: 'auto' }}>
       <form onSubmit={handleRegistrationSubmit}>
         <h4>Your personal details</h4>
 
@@ -117,7 +127,7 @@ const PersonalDetailsForm = () => {
         <h4 className="pt-3">Your personal details</h4>
 
         <Divider />
-        
+
         <Input
           label="Password"
           name="password"
@@ -141,7 +151,7 @@ const PersonalDetailsForm = () => {
           required
         />
         <div className="d-flex justify-content-end my-3">
-          <Button type="submit" variant="contained" size="large">
+          <Button type="submit" variant="contained" size="large" isLoading={isLoading}>
             Continue
           </Button>
         </div>
