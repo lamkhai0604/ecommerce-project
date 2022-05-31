@@ -11,7 +11,7 @@ export interface IProductItem {
   color?: string;
   brand?: string;
   createdAt?: string;
-  updatedAt?: number;
+  updatedAt?: string;
 }
 
 export interface ICartItem {

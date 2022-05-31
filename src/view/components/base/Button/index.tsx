@@ -65,20 +65,6 @@ const MuiButton = (props: ButtonProps) => {
         </Button>
       )}
     </>
-    // <button
-    //   className={`
-    //     ${clsName}
-    //     button button--${size || 'default'}
-    //     ${inverse && 'button--inverse'}
-    //     ${danger && 'button--danger'}
-    //     ${radius && 'border-black'}
-    //   `}
-    //   type={type}
-    //   onClick={onClick}
-    //   disabled={disabled}
-    // >
-    //     {children}
-    // </button>
   );
 };
 

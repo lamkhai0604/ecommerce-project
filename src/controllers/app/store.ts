@@ -3,11 +3,12 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import { productsReducer } from 'controllers/feature/product/productSlice';
 import { categoriesReducer } from 'controllers/feature/categories/categoriesSlice';
+import { userReducers } from 'controllers/feature/user/userSlice';
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
-  // global: globalReducer,
+  user: userReducers,
 })
 
 const sagaMiddleware = createSagaMiddleware()

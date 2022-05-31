@@ -40,7 +40,7 @@ const Header = () => {
 
       <Grid item xs={4}>
         <Link className="header-logo" to="/">
-          <span>Khai's</span>Shop
+          <span>Hello</span>Shop
         </Link>
       </Grid>
 

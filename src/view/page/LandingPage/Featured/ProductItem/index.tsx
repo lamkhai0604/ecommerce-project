@@ -40,7 +40,7 @@ const ProductItem = () => {
     e.preventDefault();
     const enteredValue = amountInputRef.current.value;
     const enteredValueNumber = +enteredValue;
-    if (enteredValue.trim().length === 0 || enteredValueNumber < 1 || enteredValueNumber > 500) {
+    if (enteredValue.trim().length === 0 || enteredValueNumber < 1 || enteredValueNumber > 100) {
       setIsValid(false);
       return;
     }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Footer from 'view/components/layout/Footer';
 import Header from 'view/components/layout/Header';
 import PromotionModal from 'view/components/layout/PromotionModal';
@@ -9,7 +9,6 @@ import Subscribers from 'view/components/layout/Subscribers';
 const RoutesApp = () => {
   //State
 
-  // const {isLoading} = useSelector(r=>r.root);
   const [promotionModal, setPromotionModal] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(5);
   const id = useRef(0);
@@ -35,13 +34,13 @@ const RoutesApp = () => {
 
       <Header />
 
+      <ToastContainer />
+      
       <Outlet />
 
       <Subscribers />
 
       <Footer />
-      {/* {isLoading && 
-      <Loading />} */}
     </>
   );
 };

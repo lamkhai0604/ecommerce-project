@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="footer-info">
           <div className="footer-info_brand">
             <div className="footer-logo">
-              <span className="footer-logo_main">Khai's</span>Shop
+              <span className="footer-logo_main">Hello</span>Shop
             </div>
             <h5>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

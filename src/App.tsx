@@ -6,6 +6,7 @@ import Cart from 'view/page/LandingPage/Cart';
 import Checkout from 'view/page/LandingPage/Checkout';
 import ProductItem from 'view/page/LandingPage/Featured/ProductItem';
 import NotFound from 'view/page/NotFound';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (

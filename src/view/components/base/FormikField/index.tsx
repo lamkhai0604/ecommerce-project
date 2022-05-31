@@ -1,5 +1,4 @@
 import { SxProps, TextField, Theme } from '@mui/material';
-import { ErrorMessage, Field, FieldProps, useField } from 'formik';
 import { forwardRef } from 'react';
 
 interface IInputProps {
@@ -10,6 +9,7 @@ interface IInputProps {
   placeholder?: string;
   clsName?: string;
   autoComplete?: string;
+  helperText?: string;
   value?: string;
   required?: boolean;
   disabled?: boolean;
@@ -19,15 +19,17 @@ interface IInputProps {
   focused?: boolean;
   formControl?: boolean;
   defaultValue?: string | number;
-  as?: string | React.ComponentType<FieldProps['field']>;
   variant?: 'standard' | 'outlined';
   size?: "small" | "medium" | undefined;
   sx?: SxProps<Theme>;
   onBlur?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    console.log(`onChange ${e.target.value}`)
+  }
   return (
     <TextField
       id={props.id}
@@ -43,13 +45,14 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
       variant={props.variant}
       autoComplete={props.autoComplete}
       autoFocus={props.autoFocus}
-      onChange={props.onChange}
+      onChange={handleChange}
       onBlur={props.onBlur}
       error={props.error}
       fullWidth={props.fullWidth}
       focused={props.focused}
       size={props.size}
       sx={props.sx}
+      helperText={props.helperText}
     />
   );
 });
