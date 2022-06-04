@@ -1,5 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { MutableRefObject, useRef, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
+import { authActions } from 'controllers/feature/auth/authSlice';
+import { getUserList, userActions } from 'controllers/feature/user/userSlice';
+import { FormEvent, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'view/components/base/Button';
 import Divider from 'view/components/base/Divider';
@@ -17,9 +20,23 @@ const LoginModal = (props: ILoginModalProps) => {
   const [passwordValid, setPasswordValid] = useState({ error: false, message: '' });
   //Ref
   const emailRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
-  const paswordRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
+  const passwordRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
+  //Redux
+  const dispatch = useAppDispatch();
+  const UserList = useAppSelector(getUserList);
 
-  const handleSubmitLogin = () => {};
+  useEffect(() => {
+    (async () => await dispatch(userActions.fetchUserList(10)))();
+  }, [dispatch]);
+
+  const handleSubmitLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formValues = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    dispatch(authActions.login(formValues))
+  };
 
   return (
     <Modal onClose={props.onClose}>
@@ -58,7 +75,7 @@ const LoginModal = (props: ILoginModalProps) => {
             </Typography>
           </Typography>
 
-          <form onChange={handleSubmitLogin}>
+          <form onSubmit={handleSubmitLogin}>
             <Input
               name="email"
               label="Email Address"
@@ -73,7 +90,7 @@ const LoginModal = (props: ILoginModalProps) => {
             <Input
               name="password"
               label="Password"
-              ref={paswordRef}
+              ref={passwordRef}
               type="password"
               fullWidth
               sx={{ marginBottom: '1rem' }}
@@ -83,20 +100,30 @@ const LoginModal = (props: ILoginModalProps) => {
             />
             <Grid container spacing={2}>
               <Grid item xs={2}>
-                <Button type="submit" variant="contained" size="large" isLoading={isLoading} sx={{borderRadius: 10, backgroundColor: '#292929', width: '100%'}}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  isLoading={isLoading}
+                  sx={{ borderRadius: 10, backgroundColor: '#292929', width: '100%' }}
+                >
                   Login
                 </Button>
               </Grid>
               <Grid item xs={4}>
-                <Button type="submit" variant="contained" size="large" isLoading={isLoading} sx={{borderRadius: 10, backgroundColor: '#292929', width: '100%'}}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  isLoading={isLoading}
+                  sx={{ borderRadius: 10, backgroundColor: '#292929', width: '100%' }}
+                >
                   Create an account
                 </Button>
               </Grid>
               <Grid item xs={3}></Grid>
               <Grid item xs={3}>
-                <Link to="/">
-                    Forgotten Password
-                </Link>
+                <Link to="/">Forgotten Password</Link>
               </Grid>
             </Grid>
           </form>

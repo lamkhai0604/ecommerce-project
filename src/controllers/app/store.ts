@@ -4,11 +4,13 @@ import rootSaga from './rootSaga';
 import { productsReducer } from 'controllers/feature/product/productSlice';
 import { categoriesReducer } from 'controllers/feature/categories/categoriesSlice';
 import { userReducers } from 'controllers/feature/user/userSlice';
+import authReducers from 'controllers/feature/auth/authSlice';
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
   user: userReducers,
+  auth: authReducers,
 })
 
 const sagaMiddleware = createSagaMiddleware()

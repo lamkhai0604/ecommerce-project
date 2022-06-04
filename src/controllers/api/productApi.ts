@@ -18,11 +18,11 @@ const productsApi = {
         const url = '/products'
         return axiosClient.post(url, data)
     },
-    update(data: IProductItem): Promise<IProductItem> {
+    updateProductItem(data: IProductItem): Promise<IProductItem> {
         const url = `/products/${data.id}`
         return axiosClient.patch(url, data)
     },
-    remove(id: string): Promise<string> {
+    removeProductItem(id: string): Promise<string> {
         const url = `/products/${id}`
         return axiosClient.delete(url)
     },

@@ -14,9 +14,9 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Suspense fallback={<BackdropLoading />}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </Suspense>
     </BrowserRouter>
   </Provider>,

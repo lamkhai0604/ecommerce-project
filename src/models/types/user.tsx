@@ -16,7 +16,12 @@ export interface IUserList {
     isLoaded: boolean;
 }
 
+export interface IUserInfo {
+    item: IUser,
+    isLoading: boolean;
+    isLoaded: boolean;
+}
 export interface IUserState {
-    user: IUser;
+    user: IUserInfo;
     userList: IUserList;
 }

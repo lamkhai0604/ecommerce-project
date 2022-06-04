@@ -1,13 +1,12 @@
 import { Box } from '@mui/material';
-import { useAppDispatch } from 'controllers/app/hooks';
 import { FormEvent, MutableRefObject, useRef, useState } from 'react';
 import Button from 'view/components/base/Button';
 import Divider from 'view/components/base/Divider';
 import Input from 'view/components/base/FormikField';
 import { toast } from 'react-toastify';
-import { userActions } from 'controllers/feature/user/userSlice';
 import { IUser } from 'models/types/user';
 import { v4 as uuidv4 } from 'uuid';
+import userApi from 'controllers/api/userApi';
 
 interface IPersonalDetailsFormProps {
   onClose: () => void;
@@ -21,8 +20,6 @@ const PersonalDetailsForm = (props: IPersonalDetailsFormProps) => {
   const [emailValid, setEmailValid] = useState({ error: false, message: '' });
   const [phoneValid, setPhoneValid] = useState({ error: false, message: '' });
   const [passwordValid, setPasswordValid] = useState({ error: false, message: '' });
-  //Redux
-  const dispatch = useAppDispatch();
   //Ref
   const firstNameRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
   const lastNameRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
@@ -31,7 +28,7 @@ const PersonalDetailsForm = (props: IPersonalDetailsFormProps) => {
   const paswordRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
   const paswordConfirmRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
 
-  const handleRegistrationSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleRegistrationSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formValues: IUser = {
@@ -62,14 +59,12 @@ const PersonalDetailsForm = (props: IPersonalDetailsFormProps) => {
       setPasswordValid({ error: true, message: 'Wrong password, please try again.' });
       return;
     }
-    dispatch(userActions.addNewUser(formValues));
+    await userApi.addNewuser(formValues)
     toast.success(
       `Thanks ${formValues.firstName}. We are glad that you joined us. Here is the coupon for you to exclusively use on our website. Have a nice day`
     );
     setIsLoading(true);
-    setTimeout(() => {
-      props.onClose();
-    }, 1000);
+    setTimeout(() => props.onClose(), 1000);
   };
 
   return (
