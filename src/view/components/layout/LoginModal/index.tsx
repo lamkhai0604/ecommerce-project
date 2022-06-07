@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'controllers/app/hooks';
-import { authActions } from 'controllers/feature/auth/authSlice';
-import { getUserList, userActions } from 'controllers/feature/user/userSlice';
+import { authActions, currentUser } from 'controllers/feature/auth/authSlice';
 import { FormEvent, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'view/components/base/Button';
@@ -23,11 +22,15 @@ const LoginModal = (props: ILoginModalProps) => {
   const passwordRef = useRef<HTMLInputElement>(null) as MutableRefObject<HTMLInputElement>;
   //Redux
   const dispatch = useAppDispatch();
-  const UserList = useAppSelector(getUserList);
+  const userLogin = useAppSelector(currentUser);
+  console.log(userLogin);
 
   useEffect(() => {
-    (async () => await dispatch(userActions.fetchUserList(10)))();
-  }, [dispatch]);
+    if (userLogin) {
+      if(userLogin.email !== emailRef.current.value) setEmailValid({ error: true, message: 'Invalid email, please try again' });
+      if(userLogin.password !== passwordRef.current.value) setPasswordValid({ error: true, message: 'Invalid email, please try again' });
+    }
+  }, [userLogin])
 
   const handleSubmitLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

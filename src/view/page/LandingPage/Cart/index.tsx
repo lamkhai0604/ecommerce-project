@@ -6,13 +6,13 @@ import Input from 'view/components/base/Input';
 import './style.css';
 import { MutableRefObject, useRef } from 'react';
 import { ICartItem } from 'models';
-import Accordion from './Accordion';
 import SubInfo from './SubInfo';
 import Divider from 'view/components/base/Divider';
 import Banner from 'view/components/layout/Banner';
 import BtnGroup from './BtnGroup';
 import Button from 'view/components/base/Button';
 import { useNavigate } from 'react-router-dom';
+import Accordion from 'view/components/base/Accordion';
 
 const Cart = () => {
   let navigate = useNavigate();
