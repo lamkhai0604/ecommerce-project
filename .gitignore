@@ -10,7 +10,6 @@
 
 # production
 /build
-/src/controllers/api
 # misc
 .DS_Store
 .env.local
