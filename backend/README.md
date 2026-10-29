@@ -89,6 +89,34 @@ schema/history. It uses disposable test credentials, not `.env`. Docker must
 be accessible; integration tests are explicitly skipped if Docker is absent
 (check Maven's skipped count). No locally running database is needed for tests.
 
+## GitHub Actions CI
+
+`.github/workflows/backend-ci.yml` runs on pull requests targeting `develop` or
+`master` when `backend/**` or the workflow itself changes. The Ubuntu runner
+uses Temurin Java 21 and the checked-in Maven Wrapper to run `./mvnw clean verify`
+from `backend/`. Maven dependencies are cached using the POM and wrapper
+configuration as cache inputs.
+
+CI requires a working Docker daemon before Maven runs. Testcontainers starts
+its own isolated PostgreSQL 17 database; no GitHub database secrets, `.env`,
+Compose service, or shared database is needed. After Maven succeeds, CI checks
+the Surefire XML report for all three named PostgreSQL integration tests and
+rejects missing reports, missing tests, skips, errors, or failures. Thus the
+local Docker-unavailable skip behavior cannot silently pass CI.
+
+To reproduce the CI build locally with JDK 21 and Docker running:
+
+```sh
+docker info > /dev/null
+./mvnw clean verify
+```
+
+Check `target/surefire-reports/TEST-com.commerceflow.backend.ApplicationIntegrationTest.xml`
+for three executed tests with zero skips, failures, and errors. In the PR's
+Checks tab, `Backend CI / Java 21 build and PostgreSQL tests` must pass,
+including the final integration-test report check. This workflow performs
+validation only; it does not publish artifacts or deploy the application.
+
 Stop local PostgreSQL while preserving data:
 
 ```sh
