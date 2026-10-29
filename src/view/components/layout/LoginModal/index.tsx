@@ -14,7 +14,6 @@ interface ILoginModalProps {
 
 const LoginModal = (props: ILoginModalProps) => {
   //State
-  const [isLoading, setIsLoading] = useState(false);
   const [emailValid, setEmailValid] = useState({ error: false, message: '' });
   const [passwordValid, setPasswordValid] = useState({ error: false, message: '' });
   //Ref
@@ -107,7 +106,6 @@ const LoginModal = (props: ILoginModalProps) => {
                   type="submit"
                   variant="contained"
                   size="large"
-                  isLoading={isLoading}
                   sx={{ borderRadius: 10, backgroundColor: '#292929', width: '100%' }}
                 >
                   Login
@@ -118,7 +116,6 @@ const LoginModal = (props: ILoginModalProps) => {
                   type="submit"
                   variant="contained"
                   size="large"
-                  isLoading={isLoading}
                   sx={{ borderRadius: 10, backgroundColor: '#292929', width: '100%' }}
                 >
                   Create an account
