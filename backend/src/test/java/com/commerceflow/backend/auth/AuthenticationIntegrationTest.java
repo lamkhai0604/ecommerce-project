@@ -144,7 +144,7 @@ class AuthenticationIntegrationTest {
                 Map.of("email", email(), "password", "x".repeat(129), "fullName", "Test"),
                 Map.of("email", email(), "password", 1234567890123456L, "fullName", "Test"),
                 Map.of("email", email(), "password", PASSWORD, "fullName", 123),
-                Map.of("email", email(), "password", PASSWORD, "fullName", "x".repeat(151)),
+                Map.of("email", email(), "password", PASSWORD, "fullName", "x".repeat(51)),
                 Map.of("email", email(), "password", PASSWORD)}) {
             problem(browser.post("/api/v1/auth/register", body), 400);
         }
@@ -318,7 +318,7 @@ class AuthenticationIntegrationTest {
         String email = email(); var browser = new Browser(); browser.bootstrap();
         String password = "🔐".repeat(128);
         var registration = browser.post("/api/v1/auth/register", Map.of(
-                "email", email, "password", password, "fullName", "😀".repeat(150)));
+                "email", email, "password", password, "fullName", "😀".repeat(50)));
         assertThat(registration.statusCode()).as(registration.body()).isEqualTo(201);
         assertThat(browser.post("/api/v1/auth/login", Map.of("email", email, "password", password)).statusCode()).isEqualTo(200);
     }
@@ -380,6 +380,29 @@ class AuthenticationIntegrationTest {
         assertThat(response.body()).doesNotContain("untrusted-client-id");
         var second = browser.get("/api/v1/auth/me"); problem(second, 401, "UNAUTHENTICATED");
         assertThat(json(response).get("requestId")).isNotEqualTo(json(second).get("requestId"));
+    }
+
+    @Test
+    void cr05BoundariesCountNormalizedEmailAndUnicodeWithoutTruncation() throws Exception {
+        var browser = new Browser(); browser.bootstrap();
+        String maximumEmail = "a".repeat(64) + "@" + "b".repeat(63) + "." + "c".repeat(63) + "." + "d".repeat(61);
+        assertThat(maximumEmail.codePointCount(0,maximumEmail.length())).isEqualTo(254);
+        var accepted = browser.post("/api/v1/auth/register", Map.of("email", "  " + maximumEmail.toUpperCase(java.util.Locale.ROOT) + "  ", "password", "🔐".repeat(12), "fullName", "😀".repeat(50)));
+        assertThat(accepted.statusCode()).as(accepted.body()).isEqualTo(201);
+        assertThat(json(accepted).get("email").asText()).isEqualTo(maximumEmail);
+        assertThat(json(accepted).get("fullName").asText()).isEqualTo("😀".repeat(50));
+        for (String name : java.util.List.of("😀".repeat(51), " ", "")) {
+            problem(browser.post("/api/v1/auth/register", Map.of("email", email(), "password", PASSWORD, "fullName", name)),400,"VALIDATION_ERROR");
+        }
+        for (String password : java.util.List.of("🔐".repeat(11), "🔐".repeat(129))) {
+            problem(browser.post("/api/v1/auth/register", Map.of("email", email(), "password", password, "fullName", "Test")),400,"VALIDATION_ERROR");
+        }
+        String tooLong = "a".repeat(64) + "@" + "b".repeat(63) + "." + "c".repeat(63) + "." + "d".repeat(62);
+        problem(browser.post("/api/v1/auth/register", registration(tooLong)),400,"VALIDATION_ERROR");
+        problem(browser.post("/api/v1/auth/login", Map.of("email", tooLong, "password", PASSWORD)),400,"VALIDATION_ERROR");
+        var combining = browser.post("/api/v1/auth/register", Map.of("email", email(), "password", PASSWORD, "fullName", "e\u0301".repeat(25)));
+        assertThat(combining.statusCode()).isEqualTo(201);
+        assertThat(new RegisterRequest("\u0130@example.com", PASSWORD, "Test").email()).isEqualTo("i\u0307@example.com");
     }
 
     @TestConfiguration

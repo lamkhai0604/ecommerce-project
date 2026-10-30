@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -72,7 +71,7 @@ public class AuthController {
 
     public record CsrfResponse(String headerName, String token) {}
     public record LoginRequest(@jakarta.validation.constraints.NotBlank @jakarta.validation.constraints.Email
-            @org.hibernate.validator.constraints.CodePointLength(max = 320) String email,
+            @org.hibernate.validator.constraints.CodePointLength(max = 254) String email,
             @jakarta.validation.constraints.NotNull String password) {
         public LoginRequest { if (email != null) email = AuthService.normalizeEmail(email); }
         @Override public String toString() { return "LoginRequest[REDACTED]"; }

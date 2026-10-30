@@ -11,11 +11,11 @@ import java.util.UUID;
 public class UserEntity {
     @Id
     private UUID id;
-    @Column(nullable = false, length = 320)
+    @Column(nullable = false, length = 254)
     private String email;
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
-    @Column(name = "full_name", nullable = false, length = 150)
+    @Column(name = "full_name", nullable = false, length = 50)
     private String fullName;
     @Column(name = "account_status", nullable = false, length = 20)
     private String accountStatus;
