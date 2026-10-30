@@ -3,6 +3,9 @@
 Independent Java 21 / Spring Boot 3.5.16 service. The existing React frontend
 continues to run separately and is not wired to this service in Sprint 0.
 Dependencies include Web, Data JPA, Validation, PostgreSQL, Flyway, and Actuator.
+Authentication uses Spring Security and PostgreSQL-backed Spring Session JDBC.
+See [Authentication](AUTHENTICATION.md) for the contract, security settings,
+admin provisioning procedure, migrations, and requirement-to-test mapping.
 
 ## Prerequisites
 
@@ -27,6 +30,9 @@ Compose binds PostgreSQL 17 to loopback only and persists it in the
 `POSTGRES_PASSWORD` are required, with no application credential defaults.
 `DB_HOST`, `DB_PORT`, and `SERVER_PORT` default to localhost, 5432, and 8080.
 If port 5432 is occupied, change `DB_PORT` in `.env`.
+For local HTTP, `.env.example` sets `SESSION_COOKIE_SECURE=false`; production
+HTTPS must use `true` (the application default). Cookies are HttpOnly,
+SameSite=Lax, Path=/; sessions expire after 30 minutes of inactivity.
 
 Compose loads the file for interpolation, but Java does **not** automatically
 load `.env`. Export the same values before starting the backend (POSIX shell):
@@ -85,9 +91,11 @@ SQL files under `src/main/resources/db/migration/`.
 The MVC test checks status, JSON media type, and response without a database.
 `ApplicationIntegrationTest` starts an isolated PostgreSQL 17 container and the
 real application, verifies both HTTP health endpoints, and checks Flyway's
-schema/history. It uses disposable test credentials, not `.env`. Docker must
-be accessible; integration tests are explicitly skipped if Docker is absent
-(check Maven's skipped count). No locally running database is needed for tests.
+schema/history. It uses disposable test credentials, not `.env`. The foundation
+suite skips without Docker, but the authentication and production-cookie suites
+require Docker and fail if it is unavailable. No locally running database is
+needed for tests. For unit/MVC tests without Docker, use
+`./mvnw -Dtest=AuthServiceTest,HealthControllerTest test`.
 
 ## GitHub Actions CI
 
@@ -123,5 +131,5 @@ Stop local PostgreSQL while preserving data:
 docker compose --env-file .env stop
 ```
 
-No frontend API wiring, authentication changes, deployment configuration, or
-production services are included in this foundation.
+Frontend authentication/API wiring, catalog/checkout implementation, and
+production deployment remain outside this backend authentication change.
