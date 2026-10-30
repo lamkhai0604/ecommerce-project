@@ -31,14 +31,17 @@ public final class DatabaseConstraintClassifier {
 
     public static boolean isTemporaryUnavailable(Throwable failure) {
         boolean[] unavailable = {false};
+        boolean[] contradictory = {false};
         boolean complete = visit(failure, item -> {
-            if (item instanceof SQLTransientConnectionException
-                    || item instanceof SQLException sql && Set.of("08001", "08006").contains(sql.getSQLState() == null ? "" : sql.getSQLState())) {
-                unavailable[0] = true;
+            if (item instanceof SQLException sql) {
+                String state = sql.getSQLState();
+                if (Set.of("08001", "08006").contains(state == null ? "" : state)
+                        || item instanceof SQLTransientConnectionException && state == null) unavailable[0] = true;
+                else if (state != null) contradictory[0] = true;
             }
             return false;
         });
-        return complete && unavailable[0];
+        return complete && unavailable[0] && !contradictory[0];
     }
 
     private static boolean visit(Throwable root, Predicate<Throwable> visitor) {

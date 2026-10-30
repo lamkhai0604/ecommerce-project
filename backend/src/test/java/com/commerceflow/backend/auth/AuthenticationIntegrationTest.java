@@ -368,6 +368,7 @@ class AuthenticationIntegrationTest {
         String email = email(); var authenticated = registered(email); login(authenticated, email);
         var method = authenticated.get("/api/v1/auth/login"); problem(method, 405, "METHOD_NOT_ALLOWED");
         assertThat(method.headers().firstValue("Allow").orElseThrow()).contains("POST");
+        assertThat(authenticated.get("/api/v1/auth/not-defined").statusCode()).isEqualTo(404);
     }
 
     @Test

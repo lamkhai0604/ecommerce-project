@@ -44,6 +44,8 @@ class DatabaseConstraintClassifierTest {
     void onlyPositivelyKnownAvailabilityFailuresAre503() {
         assertThat(ApiProblemFactory.unexpected(new RuntimeException(new SQLException("private", "08006"))))
                 .isEqualTo(ErrorCode.SERVICE_UNAVAILABLE);
+        assertThat(ApiProblemFactory.unexpected(new java.sql.SQLTransientConnectionException("private", "08004")))
+                .isEqualTo(ErrorCode.INTERNAL_ERROR);
         for (String state : new String[]{"23505", "42P01", "08004", "40001"}) {
             assertThat(ApiProblemFactory.unexpected(new SQLException("private", state))).isEqualTo(ErrorCode.INTERNAL_ERROR);
         }

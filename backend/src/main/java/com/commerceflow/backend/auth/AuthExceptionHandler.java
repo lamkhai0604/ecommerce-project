@@ -76,7 +76,9 @@ public class AuthExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    ResponseEntity<ProblemDetail> unexpected(Exception failure, HttpServletRequest request) {
+    ResponseEntity<ProblemDetail> unexpected(Exception failure, HttpServletRequest request) throws Exception {
+        // Preserve unmodeled framework protocol statuses (e.g. 404/406), not false 500s.
+        if (failure instanceof org.springframework.web.ErrorResponse) throw failure;
         return ApiProblemFactory.response(ApiProblemFactory.unexpected(failure), request);
     }
 }

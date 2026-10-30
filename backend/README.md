@@ -77,7 +77,10 @@ probe. `/actuator/health` includes database health but exposes no component
 details. Only Actuator health is exposed over HTTP. Full application startup
 requires PostgreSQL: Flyway runs migrations first, then Hibernate validates the
 schema (`ddl-auto=validate`); Hibernate does not create/update domain tables.
-The initial migration reserves the `commerceflow` schema. Flyway history lives
+The initial migration reserves the `commerceflow` schema. V2/V3 add authentication
+and session tables; V4 enforces CR-05 registration lengths with fail-closed
+aggregate preflight checks and no data remediation. See AUTHENTICATION.md before
+upgrading an existing local database. Flyway history lives
 in PostgreSQL's default `public` schema. Add future domain changes as versioned
 SQL files under `src/main/resources/db/migration/`.
 
@@ -92,7 +95,7 @@ The MVC test checks status, JSON media type, and response without a database.
 `ApplicationIntegrationTest` starts an isolated PostgreSQL 17 container and the
 real application, verifies both HTTP health endpoints, and checks Flyway's
 schema/history. It uses disposable test credentials, not `.env`. The foundation
-suite skips without Docker, but the authentication and production-cookie suites
+suite skips without Docker, but the authentication, migration, and production-cookie suites
 require Docker and fail if it is unavailable. No locally running database is
 needed for tests. For unit/MVC tests without Docker, use
 `./mvnw -Dtest=AuthServiceTest,HealthControllerTest test`.

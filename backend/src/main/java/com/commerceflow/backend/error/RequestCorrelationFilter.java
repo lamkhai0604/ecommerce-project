@@ -43,10 +43,13 @@ public class RequestCorrelationFilter extends OncePerRequestFilter {
         } catch (RuntimeException | ServletException failure) {
             if (response.isCommitted()) {
                 org.slf4j.LoggerFactory.getLogger(getClass()).error("Request failed after response commit requestId={}", id);
-                throw failure;
+                throw new ServletException("Request failed after response commit; requestId=" + id);
             }
             response.resetBuffer();
             ApiProblemFactory.write(mapper, request, response, ApiProblemFactory.unexpected(failure));
+        } catch (IOException transport) {
+            org.slf4j.LoggerFactory.getLogger(getClass()).warn("Response transport failed requestId={}", id);
+            throw new IOException("Response transport failed; requestId=" + id);
         } finally {
             if (previous == null) MDC.remove("requestId"); else MDC.put("requestId", previous);
         }

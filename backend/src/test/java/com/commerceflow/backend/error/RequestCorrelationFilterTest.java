@@ -41,7 +41,7 @@ class RequestCorrelationFilterTest {
     void committedResponseIsNotRewritten() throws Exception {
         var response = new MockHttpServletResponse(); response.getWriter().write("original"); response.flushBuffer();
         assertThatThrownBy(() -> filter.doFilter(new MockHttpServletRequest(), response,
-                (req, res) -> { throw new IllegalStateException("private"); })).isInstanceOf(IllegalStateException.class);
+                (req, res) -> { throw new IllegalStateException("private"); })).isInstanceOf(jakarta.servlet.ServletException.class).hasNoCause().hasMessageNotContaining("private");
         assertThat(response.getContentAsString()).isEqualTo("original");
         assertThat(MDC.get("requestId")).isNull();
     }
