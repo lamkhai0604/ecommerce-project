@@ -29,7 +29,15 @@ public class AuthService implements UserDetailsService {
         String email = normalizeEmail(request.email());
         if (users.existsByEmail(email)) throw new EmailConflictException();
         var customer = roles.findByName("CUSTOMER").orElseThrow(() -> new IllegalStateException("Customer role unavailable"));
-        var user = users.saveAndFlush(new UserEntity(email, passwords.encode(request.password()), request.fullName(), customer));
+        UserEntity user;
+        try {
+            user = users.saveAndFlush(new UserEntity(email, passwords.encode(request.password()), request.fullName(), customer));
+        } catch (org.springframework.dao.DataIntegrityViolationException failure) {
+            if (com.commerceflow.backend.error.DatabaseConstraintClassifier.isEmailUniqueViolation(failure)) {
+                throw new EmailConflictException();
+            }
+            throw failure; // Unchecked failure exits the transactional boundary and rolls back.
+        }
         return UserProfile.from(new AuthPrincipal(user));
     }
 

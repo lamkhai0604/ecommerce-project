@@ -1,6 +1,8 @@
 package com.commerceflow.backend.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.commerceflow.backend.error.ApiProblemFactory;
+import com.commerceflow.backend.error.ErrorCode;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -79,9 +81,11 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .exceptionHandling(errors -> errors
                         .authenticationEntryPoint((request, response, exception) ->
-                                ApiErrors.write(mapper, request, response, 401, "UNAUTHENTICATED", "Authentication required"))
+                                ApiProblemFactory.write(mapper, request, response, ErrorCode.UNAUTHENTICATED))
                         .accessDeniedHandler((request, response, exception) ->
-                                ApiErrors.write(mapper, request, response, 403, "FORBIDDEN", "Permission denied or CSRF token invalid")))
+                                ApiProblemFactory.write(mapper, request, response,
+                                        exception instanceof org.springframework.security.web.csrf.CsrfException
+                                                ? ErrorCode.CSRF_INVALID : ErrorCode.ACCESS_DENIED)))
                 .requestCache(cache -> cache.disable())
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())

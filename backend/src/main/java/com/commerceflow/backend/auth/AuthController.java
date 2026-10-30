@@ -45,8 +45,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public UserProfile login(@RequestBody LoginRequest login, HttpServletRequest request, HttpServletResponse response) {
-        if (login.email() == null || login.password() == null) throw new BadCredentialsException("Invalid credentials");
+    public UserProfile login(@Valid @RequestBody LoginRequest login, HttpServletRequest request, HttpServletResponse response) {
         var authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken.unauthenticated(login.email(), login.password()));
         strategy.onAuthentication(authentication, request, response);
@@ -72,7 +71,10 @@ public class AuthController {
     }
 
     public record CsrfResponse(String headerName, String token) {}
-    public record LoginRequest(String email, String password) {
+    public record LoginRequest(@jakarta.validation.constraints.NotBlank @jakarta.validation.constraints.Email
+            @org.hibernate.validator.constraints.CodePointLength(max = 320) String email,
+            @jakarta.validation.constraints.NotNull String password) {
+        public LoginRequest { if (email != null) email = AuthService.normalizeEmail(email); }
         @Override public String toString() { return "LoginRequest[REDACTED]"; }
     }
 }
